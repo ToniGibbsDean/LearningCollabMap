@@ -1,0 +1,2964 @@
+names(long_df)
+kaaScoreAllLev
+be1ScoreAllLev
+zemScoreAllLev
+zesScoreAllLev
+generateScoreParameterPlot_allLevels<-function(data, p) {#
+#
+               # parameter<-enquo(param)#
+#
+                        scorePlot <- #
+                                        data %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                mutate_if(is_character, as_factor) %>%#
+                                                #filter(level==l) %>%#
+                                                filter(param==p) %>%#
+                                               # summarise(across({{param}}, first, .names = "test"), #_{.col}" but cant figure how to only call part of the name for the plot#
+                                                 #         meanscore=mean(trialScore)) %>%#
+                                                ggplot(aes(y=value, x=meancorrectedL6trialScore)) +#
+                                                    geom_point(colour="grey", alpha=0.4) +#
+                                                    geom_smooth(method="lm") +#
+                                                    coord_cartesian() +#
+                                                    stat_cor(method = "pearson",p.accuracy = 0.001, r.accuracy = 0.01, #
+                                                       label.x.npc = 0.3, label.y.npc = 0.1, size=2) +#
+                                                    theme_minimal() +#
+                                                    ylab(p) +#
+                                                    facet_wrap(~level)#
+#
+                return(scorePlot)#
+#
+        }#
+        muxScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "mux")#
+        saaScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "saa_0")#
+        kaxScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "kax")#
+        kaaScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "kaa")#
+        be1ScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "be1")#
+        zemScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "zem")#
+        zesScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "zes")
+kaxScoreAllLev
+kaaScoreAllLev
+be1ScoreAllLev
+zemScoreAllLev
+zesScoreAllLev
+generateScoreParameterPlot_allLevels<-function(data, p) {#
+#
+               # parameter<-enquo(param)#
+#
+                        scorePlot <- #
+                                        data %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                mutate_if(is_character, as_factor) %>%#
+                                                #filter(level==l) %>%#
+                                                filter(param==p) %>%#
+                                               # summarise(across({{param}}, first, .names = "test"), #_{.col}" but cant figure how to only call part of the name for the plot#
+                                                 #         meanscore=mean(trialScore)) %>%#
+                                                ggplot(aes(y=value, x=meanscore)) +#
+                                                    geom_point(colour="grey", alpha=0.4) +#
+                                                    geom_smooth(method="lm") +#
+                                                    coord_cartesian() +#
+                                                    stat_cor(method = "pearson",p.accuracy = 0.001, r.accuracy = 0.01, #
+                                                       label.x.npc = 0.3, label.y.npc = 0.1, size=2) +#
+                                                    theme_minimal() +#
+                                                    ylab(p) +#
+                                                    facet_wrap(~level)#
+#
+                return(scorePlot)#
+#
+        }#
+        muxScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "mux")#
+        saaScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "saa_0")#
+        kaxScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "kax")#
+        kaaScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "kaa")#
+        be1ScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "be1")#
+        zemScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "zem")#
+        zesScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "zes")
+be1ScoreAllLev
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lm(value ~  1) + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7))
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lm(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+str(long_df)
+modNull<-     #
+                                long_df %>%#
+                                        filter(param==p)
+str(modNull)
+modNull
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lm(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+install.packages("lme4", type = "source")
+library(lme4)
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+?lmer()
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+oo <- options(repos = "https://cran.r-project.org/")#
+install.packages("Matrix")#
+install.packages("lme4")#
+options(oo)
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+update.packages()
+remove.packages("Matrix")#
+remove.packages("lme4")#
+install.packages("lme4", type = "source")#
+library(lme4)
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+remove.packages("Matrix")#
+install.packages("Matrix")
+remove.packages("lme4")
+install.packages("lme4", type = "source")#
+library(lme4)
+install.packages("Matrix")
+library(Matrix)
+long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+#################################################################################################################################################
+# 1. Packages and path to project directory #######
+#################################################################################################################################################
+    #set seed and load pacakges #
+        set.seed(0.1)#
+        library(tidyverse)#
+        #library(ggplot2)#
+        #library(ggplotify)#
+        #library(nlme)#
+        library(lme4)#
+        library(lmerTest)#
+        library(sjPlot)#
+        library(patchwork)#
+        library(ggpubr)#
+#
+        options(scipen=999)#
+#
+        path<-"/Users/tonigibbs-dean/Documents/SpaceTaskProject/SPQ/Results"#
+#
+    #load colours#
+        greenParaColour<-"#6fb24b"#
+        MASQdepColour<-"#676ed4"#
+        MASQanxColour<-"#b74d86"#
+        PDIColour<-"#b6b638"#
+        SPQColout<-""#
+        Comp1<-"#8951a5"#
+        Comp2<-"#58bf7a"#
+        Comp3<-"#be4a5b"#
+        Comp4<-"#afab4f"#
+        Comp5<-"#a47e3c"#
+        Comp6<-"#43c8ac"#
+        Comp7<-""#
+        Comp8<-""#
+        Comp9<-""#
+        L2Col<-"#c75f34"#
+        L3Col<-"#648cd5"#
+        L4Col<-"#cc8c33"#
+        L5Col<-"#588234"#
+        L6Col<-"#ae4837"#
+    #read in parameters - L5 MAY CHANGE and l6 as s=now doing the error message iterations thing#
+    #these parameters were created using the new SPQ_HGF-creatingInputs_Responses file so I could ensure the ordering #
+#
+        L3_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level3.csv") #
+        L4_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level4.csv")#
+        L5_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level5.csv")#
+        L6_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level6.csv")#
+#
+        L3_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level3.csv")#
+        L4_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level4.csv")#
+        L5_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level5.csv")#
+        L6_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level6.csv")#
+    #read in main data frame  #
+#
+            spqall<- readRDS("/Users/tg625/Documents/PDA/Directory/Data/GenPop2Tibble.RDS") %>%#
+                filter(level!="1") %>%#
+                filter(device_type!="tablet") %>% #only one tablet - so remove#
+                #filter(devdx.text %in% c("ADHD", "Chronic migraine")) %>% #exclude all expect ADHD and chronic migraine (n10 altogether)#
+                filter(devdx!="Yes (if you feel comfortable to do so please specify)") %>%#
+                mutate(BW=110-participantConfidence)  %>% #
+                mutate(bw_pe=(BW/PE)) %>%#
+                mutate_if(is_character, as_factor) %>%#
+                mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                mutate(level=as.factor(level)) %>%#
+                mutate(gamers=gamingtime.quant>2) %>%#
+                mutate(PEscaled=abs(scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition)) %>%#
+                mutate(PEsignedScaled=scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition) %>%#
+                mutate(meanchange=Mean != dplyr::lag(Mean)) %>%#
+                mutate(SDhigh = SD %in% 0.12) %>%#
+                mutate(correctedL6trialScore = case_when(level == 6  & trialScore < 0 ~ 0, #correct level 6 scores#
+                                            level == 6 & trialScore>0  ~ trialScore/2,#
+                                            TRUE ~ as.numeric(trialScore))) %>%##
+                mutate(level_3split = case_when( level == 3 & SDhigh == TRUE ~ "3highnoise",#
+                                                level == 3 & SDhigh == FALSE ~ "3lownoise",#
+                                                level == 4 ~ "4",#
+                                                level == 5 ~ "5",#
+                                                level == 6 ~ "6"))#
+            spqForward<-spqall %>%#
+                        filter(trialName %in% c('spacetask003', 'spacetask012')) #%>%#
+                        #group_by(level_3split)#
+#
+            spqReversed<-spqall %>%#
+                        filter(trialName %in% c('spacetask003reversed', 'spacetask012reversed')) #%>%#
+                        #group_by(level_3split)#
+#################################################################################################################################################
+#joining datasets, making dataframe#
+#################################################################################################################################################
+#
+        #get list of IDs in the order they were fed into the HGF #
+        #bind ID to params#
+            PID_for<-spqForward %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+#
+            ParamsandIDs<-cbind(L3_params_F, L4_params_F, L5_params_F, L6_params_F, PID_for)#
+#
+            ParamsandIDs <- ParamsandIDs %>%#
+                                            rename(Participant.Private.ID=PID_for)#
+#
+            PID_rev<-spqReversed %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+            ParamsandIDsReversed<-cbind(L3_params_R, L4_params_R, L5_params_R, L6_params_R, PID_rev)#
+#
+            ParamsandIDsReversed <- ParamsandIDsReversed %>%#
+                                                rename(Participant.Private.ID=PID_rev)#
+#
+        #left join to main data#
+            temp <- spqall %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=spqall, y=ParamsandIDs, by="Participant.Private.ID")#
+            SPQwithParams <- temp %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=temp, y=ParamsandIDsReversed, by="Participant.Private.ID") #
+#################################################################################################################################################
+#creating modelling df#
+#################################################################################################################################################
+#
+        #plots of parameters that arent fixed #
+       plotting <- SPQwithParams %>%#
+                                    mutate(gamers=gamingtime.quant>2) %>% #
+                                    filter(!level==2) %>%#
+                                    mutate(startSD = trialName %in% c("spacetask012reversed", "spacetask012")) %>%#
+                                    #mutate(level_3split=as_factor(level_3split)) %>%#
+                                    #group_by(Participant.Private.ID, level_3split) %>%#
+                                    group_by(Participant.Private.ID) %>%#
+                                    summarise( #
+                                        #meanchangeTF=dplyr::first(meanchange),#
+                                        #SDhighcondit=dplyr::first(SDhigh),#
+                                        masq_total_score=dplyr::first(masq_total_score), #
+                                        gdd_score=dplyr::first(gdd_score),#
+                                        aa_score=dplyr::first(aa_score),#
+                                        gda_score=dplyr::first(gda_score),#
+                                        ad_score=dplyr::first(ad_score),#
+                                        masqCombined_anxiety=sum(aa_score, gda_score),#
+                                        masqCombined_depression=sum(ad_score, gdd_score),#
+                                        gamingtime=dplyr::first(gamingtime),#
+                                        pdi_total=dplyr::first(pdi_total),#
+                                        dsm_total=dplyr::first(dsm_total),#
+                                        green_total=dplyr::first(green_total),#
+                                        gamers=dplyr::first(gamers),#
+                                        education=dplyr::first(education),#
+                                        ethnicity=dplyr::first(ethnicity),#
+                                        employment=dplyr::first(employment),#
+                                        psychep=dplyr::first(psychep), #
+                                        psychdx=dplyr::first(psychdx),#
+                                        neurologicalImp=dplyr::first(devdx),#
+                                        spq_total=dplyr::first(spq_total),#
+                                        wideStartSD=dplyr::first(startSD),#
+                                            L3_mux_F=dplyr::first(L3_f_mux), #
+                                            L3_mux_R=dplyr::first(L3_f_mux), #
+                                            L3_saa_0_F=dplyr::first(L3_f_mua),#
+                                            L3_saa_0_R=dplyr::first(L3_r_mua),#
+                                            L3_kax_F=dplyr::first(L3_f_kax),#
+                                            L3_kax_R=dplyr::first(L3_r_kax),#
+                                            L3_kaa_F=dplyr::first(L3_f_kaa),#
+                                            L3_kaa_R=dplyr::first(L3_r_kaa),#
+                                            L3_be1_F=dplyr::first(L3_f_be1),#
+                                            L3_be1_R=dplyr::first(L3_r_be1),#
+                                            L3_zem_F=dplyr::first(L3_f_zem),#
+                                            L3_zem_R=dplyr::first(L3_r_zem),#
+                                            L3_zes_F=dplyr::first(L3_f_zes),#
+                                            L3_zes_R=dplyr::first(L3_r_zes),#
+                                        L4_mux_F=dplyr::first(L4_f_mux), #
+                                           L4_mux_R=dplyr::first(L4_f_mux), #
+                                            L4_saa_0_F=dplyr::first(L4_f_mua),#
+                                            L4_saa_0_R=dplyr::first(L4_r_mua),#
+                                            L4_kax_F=dplyr::first(L4_f_kax),#
+                                            L4_kax_R=dplyr::first(L4_r_kax),#
+                                            L4_kaa_F=dplyr::first(L4_f_kaa),#
+                                            L4_kaa_R=dplyr::first(L4_r_kaa),#
+                                            L4_be1_F=dplyr::first(L4_f_be1),#
+                                            L4_be1_R=dplyr::first(L4_r_be1),#
+                                            L4_zem_F=dplyr::first(L4_f_zem),#
+                                            L4_zem_R=dplyr::first(L4_r_zem),#
+                                            L4_zes_F=dplyr::first(L4_f_zes),#
+                                            L4_zes_R=dplyr::first(L4_r_zes),#
+                                        L5_mux_F=dplyr::first(L5_f_mux), #
+                                            L5_mux_R=dplyr::first(L5_r_mux), #
+                                            L5_saa_0_F=dplyr::first(L5_f_mua),#
+                                            L5_saa_0_R=dplyr::first(L5_r_mua),#
+                                            L5_kax_F=dplyr::first(L5_f_kax),#
+                                            L5_kax_R=dplyr::first(L5_r_kax),#
+                                            L5_kaa_F=dplyr::first(L5_f_kaa),#
+                                            L5_kaa_R=dplyr::first(L5_r_kaa),#
+                                            L5_be1_F=dplyr::first(L5_f_be1),#
+                                            L5_be1_R=dplyr::first(L5_r_be1),#
+                                            L5_zem_F=dplyr::first(L5_f_zem),#
+                                            L5_zem_R=dplyr::first(L5_r_zem),#
+                                            L5_zes_F=dplyr::first(L5_f_zes),#
+                                            L5_zes_R=dplyr::first(L5_r_zes),#
+                                        L6_mux_F=dplyr::first(L6_f_mux),#
+                                            L6_mux_R=dplyr::first(L6_r_mux),  #
+                                            L6_saa_0_F=dplyr::first(L6_f_mua),#
+                                            L6_saa_0_R=dplyr::first(L6_r_mua),#
+                                            L6_kax_F=dplyr::first(L6_f_kax),#
+                                            L6_kax_R=dplyr::first(L6_r_kax),                                            #
+                                            L6_kaa_F=dplyr::first(L6_f_kaa),#
+                                            L6_kaa_R=dplyr::first(L6_r_kaa),#
+                                            L6_be1_F=dplyr::first(L6_f_be1),#
+                                            L6_be1_R=dplyr::first(L6_r_be1), #
+                                            L6_zem_F=dplyr::first(L6_f_zem),#
+                                            L6_zem_R=dplyr::first(L6_r_zem),#
+                                            L6_zes_F=dplyr::first(L6_f_zes),#
+                                            L6_zes_R=dplyr::first(L6_r_zes)) %>%#
+                            unite("L3_mux", L3_mux_F:L3_mux_R, na.rm = TRUE, remove = TRUE) %>% #SET TO FLASE if you want to see the OG cols and vals#
+                                unite("L3_saa", L3_saa_0_F:L3_saa_0_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kax", L3_kax_F:L3_kax_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kaa", L3_kaa_F:L3_kaa_R, na.rm = TRUE, remove = TRUE) %>%          #
+                                unite("L3_be1", L3_be1_F:L3_be1_R, na.rm = TRUE, remove = TRUE) %>%            #
+                                unite("L3_zem", L3_zem_F:L3_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L3_zes", L3_zes_F:L3_zes_R, na.rm = TRUE, remove = TRUE) %>% #
+                            unite("L4_mux", L4_mux_F:L4_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L4_saa_0", L4_saa_0_F:L4_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L4_kax", L4_kax_F:L4_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_kaa", L4_kaa_F:L4_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L4_be1", L4_be1_F:L4_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zem", L4_zem_F:L4_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zes", L4_zes_F:L4_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L5_mux", L5_mux_F:L5_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L5_saa_0", L5_saa_0_F:L5_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L5_kax", L5_kax_F:L5_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_kaa", L5_kaa_F:L5_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L5_be1", L5_be1_F:L5_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zem", L5_zem_F:L5_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zes", L5_zes_F:L5_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L6_mux", L6_mux_F:L6_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L6_saa_0", L6_saa_0_F:L6_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L6_kax", L6_kax_F:L6_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_kaa", L6_kaa_F:L6_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L6_be1", L6_be1_F:L6_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zem", L6_zem_F:L6_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zes", L6_zes_F:L6_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                               #mutate( trialName=as.factor(trialName), #
+                                    #    device_type=as.factor(device_type)) %>%#
+                                mutate_if(is_character, as.numeric)#
+                            genpop2_averaged <- spqall %>%#
+                                                        filter(level %in% c(3:6)) %>%#
+                                                        group_by(Participant.Private.ID, level) %>%#
+                                                        summarise(meanscore=mean(trialScore),#
+                                                            score=mean(trialScore), #
+                                                            meancorrectedL6trialScore=mean(correctedL6trialScore),#
+                                                            meanconf=mean(participantConfidence),#
+                                                            sumsuccess=sum(success/length(level)),#
+                                                            meanPE=mean(PE),#
+                                                            meanPEscaled=mean(PEscaled),#
+                                                            meanPEsignedScaled=mean(PEsignedScaled),#
+                                                            meanPerfE=mean(PerfE),#
+                                                            PerfE=dplyr::first(PerfE),#
+                                                            PE=dplyr::first(PE),#
+                                                            PEscaled=dplyr::first(PEscaled),#
+                                                            PEsignedScaled=dplyr::first(PEsignedScaled)) #
+                            long_df <- plotting %>% #
+                                            #group_by(level_3split) %>%#
+                                            pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%  #
+                                            #group_by(level) %>%                                         #
+                                            left_join(x=., y=genpop2_averaged, by=c("Participant.Private.ID", "level")) %>%#
+                                            mutate_if(is_character, as_factor) #
+                            long_df$level<-droplevels(long_df$level)#
+                                            cMat <- cbind( c(-1,1,0,0), # 3 vs 4#
+                                                        c(0,-1,1,0), # 4 vs 5#
+                                                        c(0,0,-1,1)) #5vs 6#
+                                            contrasts(long_df$level) <-cMat#
+                                            colnames(attr(long_df$level, "contrasts")) <- c("3v4", "4v5", "5v6")#
+########################################################################################################################
+#plots#
+########################################################################################################################
+             generateScoreParameterPlot_allLevels<-function(data, p) {#
+#
+               # parameter<-enquo(param)#
+#
+                        scorePlot <- #
+                                        data %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                mutate_if(is_character, as_factor) %>%#
+                                                #filter(level==l) %>%#
+                                                filter(param==p) %>%#
+                                               # summarise(across({{param}}, first, .names = "test"), #_{.col}" but cant figure how to only call part of the name for the plot#
+                                                 #         meanscore=mean(trialScore)) %>%#
+                                                ggplot(aes(y=value, x=meanscore)) +#
+                                                    geom_point(colour="grey", alpha=0.4) +#
+                                                    geom_smooth(method="lm") +#
+                                                    coord_cartesian() +#
+                                                    stat_cor(method = "pearson",p.accuracy = 0.001, r.accuracy = 0.01, #
+                                                       label.x.npc = 0.3, label.y.npc = 0.1, size=2) +#
+                                                    theme_minimal() +#
+                                                    ylab(p) +#
+                                                    facet_wrap(~level)#
+#
+                return(scorePlot)#
+#
+        }#
+        muxScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "mux")#
+        saaScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "saa_0")#
+        kaxScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "kax")#
+        kaaScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "kaa")#
+        be1ScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "be1")#
+        zemScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "zem")#
+        zesScoreAllLev<-generateScoreParameterPlot_allLevels(long_df, "zes")#
+                generateSymptomParameterPlot_allLevels<-function(data, p, symptomScale) {#
+#
+                                     x<-   data %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                mutate_if(is_character, as_factor) %>%#
+                                                #filter(level==3) %>%#
+                                                filter(param==p) %>%#
+                                               # summarise(across({{param}}, first, .names = "test"), #_{.col}" but cant figure how to only call part of the name for the plot#
+                                                 #         meanscore=mean(trialScore)) %>%#
+                                                ggplot(aes(y=value, x= .data[[symptomScale]])) +#
+                                                    geom_point(colour="grey", alpha=0.4) +#
+                                                    geom_smooth(method="lm") +#
+                                                    coord_cartesian() +#
+                                                    stat_cor(method = "pearson",p.accuracy = 0.001, r.accuracy = 0.01, #
+                                                       label.x.npc = 0.3, label.y.npc = 0.1, size=2) +#
+                                                    theme_minimal() +#
+                                                    ylab(p) +#
+                                                    facet_wrap(~level)#
+#
+                    return(x)#
+                }#
+#
+        muxGreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "mux", "green_total")#
+        saaGreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "saa_0", "green_total")#
+        kaxGreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "kax", "green_total")#
+        kaaGreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "kaa", "green_total")#
+        be1GreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "be1", "green_total")#
+        zemGreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "zem", "green_total")#
+        zesGreenParanoia<-generateSymptomParameterPlot_allLevels(long_df, "zes", "green_total")#
+        muxSPQ<-generateSymptomParameterPlot_allLevels(long_df, "mux", "spq_total")#
+        saaSPQ<-generateSymptomParameterPlot_allLevels(long_df, "saa_0", "spq_total")#
+        kaxSPQ<-generateSymptomParameterPlot_allLevels(long_df, "kax", "spq_total")#
+        kaaSPQ<-generateSymptomParameterPlot_allLevels(long_df, "kaa", "spq_total")#
+        be1SPQ<-generateSymptomParameterPlot_allLevels(long_df, "be1", "spq_total")#
+        zemSPQ<-generateSymptomParameterPlot_allLevels(long_df, "zem", "spq_total")#
+        zesSPQ<-generateSymptomParameterPlot_allLevels(long_df, "zes", "spq_total")#
+        muxPDI<-generateSymptomParameterPlot_allLevels(long_df, "mux", "pdi_total")#
+        saaPDI<-generateSymptomParameterPlot_allLevels(long_df, "saa_0", "pdi_total")#
+        kaxPDI<-generateSymptomParameterPlot_allLevels(long_df, "kax", "pdi_total")#
+        kaaPDI<-generateSymptomParameterPlot_allLevels(long_df, "kaa", "pdi_total")#
+        be1PDI<-generateSymptomParameterPlot_allLevels(long_df, "be1", "pdi_total")#
+        zemPDI<-generateSymptomParameterPlot_allLevels(long_df, "zem", "pdi_total")#
+        zesPDI<-generateSymptomParameterPlot_allLevels(long_df, "zes", "pdi_total")#
+###########################################################################################################################################################################################
+#Modelling #
+###########################################################################################################################################################################################
+        #################################################################################################################################
+        #psychsis models#
+        #################################################################################################################################
+                p<-"be1"#
+#
+                        modNull<-#
+                                long_df %>%#
+                                    filter(param==p) %>%#
+                                    drop_na %>%#
+                                    lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))#
+                        modNull_covariates<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~ ethnicity + employment + psychdx + neurologicalImp + gamers + education +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        mod_level<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modSPQ<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*spq_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modSPQ_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + spq_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modPara<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*green_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modPara_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + green_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modDelusions<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*pdi_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modDelusions_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + pdi_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                                        MuMIn::model.sel(modNull,#
+                                                        modNull_covariates,#
+                                                        mod_level,#
+                                                        modSPQ,#
+                                                        modSPQ_noint,#
+                                                        modPara,#
+                                                        modPara_noint,#
+                                                        modDelusions,#
+                                                        modDelusions_noint)             #
+########################################################################################################################################
+# Residual plots #
+########################################################################################################################################
+#
+    #################################
+    #be1 green paranoia findings #
+    #################################
+        #######################################
+        #be1 sig increases by level #
+        #######################################
+                    modPara_noint_forResidPlot<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                    long_df_be1 <- long_df %>% filter(param==p) %>% drop_na     #
+                    long_df_be1$modPara_resids<-resid(modPara_noint_forResidPlot)#
+                be1xLevel_boxplot<-long_df_be1 %>%#
+                                            group_by(level) %>%#
+                                            #filter(param=="be1") %>%#
+                                            select(modPara_resids) %>%#
+                                            #summarise(meanbe1=mean(value)) %>%#
+                                            ggplot(aes(y=modPara_resids, x=level)) +#
+                                            geom_boxplot()#
+#
+      #############################################################################
+        #be1 increases even more in people with high paranoia scores #
+      #############################################################################
+#
+            long_df_be1 %>% #
+                    ggplot(aes(x=green_total, y=value)) +#
+                    geom_point() +#
+                    geom_smooth(aes(colour=level), method=lm)       #
+            long_df_be1 %>% #
+                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                    geom_point(alpha=0.3) +#
+                    geom_smooth(aes(colour=level), method=gam)  +#
+                    theme_classic()+#
+                    ylab("Residuals from model predicting Be1\n(without green paranoia)")
+long_df_be1 %>% #
+                    ggplot(aes(x=green_total, y=value)) +#
+                    geom_point() +#
+                    geom_smooth(aes(colour=level), method=lm) +#
+                    theme_classic()+#
+                    ylab("Be1 value")
+long_df_be1 %>% #
+                    ggplot(aes(x=green_total, y=value)) +#
+                    geom_point(alpha=0.3) +#
+                    geom_smooth(aes(colour=level), method=lm) +#
+                    theme_classic()+#
+                    ylab("Be1 value")
+long_df_be1 %>% #
+                    ggplot(aes(x=green_total, y=value)) +#
+                    geom_point(alpha=0.1) +#
+                    geom_smooth(aes(colour=level), method=lm) +#
+                    theme_classic()+#
+                    ylab("Be1 value")
+be1_greenPara_xLevels <-long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=value)) +#
+                                    geom_point(alpha=0.1) +#
+                                    geom_smooth(aes(colour=level), method=lm) +#
+                                    theme_classic()+#
+                                    ylab("Be1 value")      #
+        be1_greenPara_xLevels_residsplot<-long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                                    geom_point(alpha=0.1) +#
+                                    geom_smooth(aes(colour=level), method=lm)  +#
+                                    theme_classic()+#
+                                    ylab("Residuals from model predicting Be1\n(without green paranoia)")
+be1_greenPara_xLevels_residsplot
+long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                                    geom_point(alpha=0.1) +#
+                                    geom_smooth(aes(colour=level), method=lm, SE=FALSE)  +#
+                                    theme_classic()+#
+                                    ylab("Residuals from model predicting Be1\n(without green paranoia)")
+long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                                    geom_point(alpha=0.1) +#
+                                    geom_smooth(aes(colour=level), method=lm, se=FALSE)  +#
+                                    theme_classic()+#
+                                    ylab("Residuals from model predicting Be1\n(without green paranoia)")
+be1_greenPara_xLevels_residsplot<-long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                                    geom_point(alpha=0.3) +#
+                                    geom_smooth(aes(colour=level), method=lm, se=FALSE)  +#
+                                    theme_classic()+#
+                                    ylab("Residuals from model predicting Be1\n(without green paranoia)")
+be1_greenPara_xLevels_residsplot
+long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                                    geom_point(alpha=0.3) +#
+                                    geom_smooth(aes(colour=level), method=lm, se=FALSE)  +#
+                                    theme_classic()+#
+                                    ylab("Residuals from model predicting Be1\n(without green paranoia)")   +#
+                                    coord_cartesian(ylim = c(-0.2, 0.2))
+be1_greenPara_xLevels_residsplot<-long_df_be1 %>% #
+                                    ggplot(aes(x=green_total, y=modPara_resids)) +#
+                                    geom_point(alpha=0.2) +#
+                                    geom_smooth(aes(colour=level), method=lm, se=FALSE)  +#
+                                    theme_classic()+#
+                                    ylab("Residuals from model predicting Be1\n(without green paranoia)")
+be1_greenPara_xLevels_residsplot
+›   long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(x=value)) +#
+                    geom_boxplot(group=level)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(x=value)) +#
+                    geom_boxplot(fill=level)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(x=value)) +#
+                    geom_boxplot()
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(x=value, y=level)) +#
+                    geom_boxplot()
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(y=value, x=level)) +#
+                    geom_boxplot()
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(y=value, x=level)) +#
+                    geom_boxplot(aes(fill=level)) +#
+                    theme_classic() +#
+                    ylab("Kax value")
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    ggplot(aes(y=value, x=level)) +#
+                    geom_boxplot(aes(fill=level)) +#
+                    theme_classic() +#
+                    ylab("Kax value") +#
+                    coord_cartesian(ylim = c(0, 20)) #plot without the outliers in
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    filter(param > 20)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    filter(param => 20)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    filter(param >= 20)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    filter(value > 20)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    mutate(kaxOutlier = value > 20)
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    mutate(kaxOutlier = value > 20) %>% select(kaxOutlier) %>% summarise(n())
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    mutate(kaxOutlier = value > 20) %>% group_by(kaxOutlier) %>% summarise(n())
+580*4
+long_df %>%   #
+                    group_by(level) %>%#
+                    filter(param=="kax") %>%#
+                    mutate(kaxOutlier = value > 20) %>%#
+                    filter(!kaxOutlier==TRUE) %>%#
+                    ggplot(aes(y=value, x=level)) +#
+                    geom_boxplot(aes(fill=level)) +#
+                    theme_classic() +#
+                    ylab("Kax value")
+long_df %>%#
+            filter(param=="kax") %>%#
+            ggplot(y=value) %>%#
+            geom_density()
+long_df %>%#
+            filter(param=="kax") %>%#
+            ggplot(y=value) +#
+            geom_density()
+long_df %>%#
+            filter(param=="kax")
+long_df %>%#
+            filter(param=="kax") %>%#
+            ggplot(x=value) +#
+            geom_density()
+long_df %>%#
+            filter(param=="kax") %>%#
+            ggplot(aes(x=value)) +#
+            geom_density()
+generateDensityPlot<-function(data, p) {#
+#
+                denplot<- data %>%#
+                                filter(param=="kax") %>%#
+                                ggplot(aes(x=value)) +#
+                                geom_density() +#
+                                ylab(p)#
+#
+                return(denplot)#
+#
+    }
+generateDensityPlot(long_df, "be1")
+generateDensityPlot<-function(data, p) {#
+#
+                denplot<- data %>%#
+                                filter(param==p) %>%#
+                                ggplot(aes(x=value)) +#
+                                geom_density() +#
+                                ylab(p)#
+#
+                return(denplot)#
+#
+    }
+generateDensityPlot(long_df, "be1")
+kaxDensity<-generateDensityPlot(long_df, "kax")#
+            kaaDensity<-generateDensityPlot(long_df, "kaa")#
+            be1Density<-generateDensityPlot(long_df, "be1")
+kaxDensity
+generateDensityPlot<-function(data, p) {#
+#
+                        denplot<- data %>%#
+                                        filter(param==p) %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        ylab(p)+#
+                                        theme_classic()#
+#
+                        return(denplot)#
+#
+            }#
+#
+            kaxDensity<-generateDensityPlot(long_df, "kax")#
+            kaaDensity<-generateDensityPlot(long_df, "kaa")#
+            be1Density<-generateDensityPlot(long_df, "be1")
+be1Density
+kaaDensity
+kaxDensity
+densityPlots<- kaxDensity / kaaDensity / be1Densit
+densityPlots<- kaxDensity / kaaDensity / be1Density
+densityPlots
+long_df %>%#    #
+                    filter(param=="be1") %>%#
+                    ggplot(y=value) +#
+                    boxplot()
+long_df %>%#    #
+                    filter(param=="be1") %>%#
+                    ggplot(y=value) +#
+                    geom_boxplot()
+long_df %>%#    #
+                    filter(param=="be1") %>%#
+                    ggplot(aes(y=value)) +#
+                    geom_boxplot()
+generateBoxplots<-function(data, p) {#
+#
+                     boxplot<- data %>%#    #
+                                    filter(param==p) %>%#
+                                    ggplot(aes(y=value)) +#
+                                    geom_boxplot()#
+#
+                return(boxplot)#
+            }
+generateBoxplots(long_df, "kax")
+kaxbox<-generateBoxplots(long_df, "kax")#
+            kaabox<-generateBoxplots(long_df, "kaa")#
+            be1box<-generateBoxplots(long_df, "be1")#
+#
+            boxplots<-kaxbox/kaabox/be1box
+boxplots
+boxplots<-kaxbox|kaabox|be1box
+boxplots
+long_df %>%#
+                    filter(param=="be1") %>%#
+                    select(value) %>%#
+                    summarise(n())
+long_df %>%#
+                    filter(param=="be1") %>%#
+                    select(value)
+long_df %>%#
+                    filter(param=="be1") %>%#
+                    select(value) %>%#
+                    mutate(valueNA=value==NA)#
+                    summarise(n())
+long_df %>%#
+                    filter(param=="be1") %>%#
+                    select(value) %>% summary()
+long_df %>%#
+                    filter(param=="kax") %>%#
+                    select(value) %>% summary()
+plotting %>%#
+                    filter(param=="kax") %>%#
+                    select(value) %>% summary()
+long_df <- plotting %>% #
+                                            #group_by(level_3split) %>%#
+                                            pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%  #
+                                            #group_by(level) %>%                                         #
+                                            left_join(x=., y=genpop2_averaged, by=c("Participant.Private.ID", "level")) %>%#
+                                            mutate_if(is_character, as_factor) %>%
+()
+long_df <- plotting %>% #
+                                            #group_by(level_3split) %>%#
+                                            pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%  #
+                                            #group_by(level) %>%                                         #
+                                            left_join(x=., y=genpop2_averaged, by=c("Participant.Private.ID", "level")) %>%#
+                                            mutate_if(is_character, as_factor)
+long_df
+long_df %>%#
+                    filter(param=="kax") %>%#
+                    select(value) %>% summary()
+SPQwithParams
+SPQwithParams %>% summary()
+plotting <- SPQwithParams %>%#
+                                    mutate(gamers=gamingtime.quant>2) %>% #
+                                    filter(!level==2) %>%#
+                                    mutate(startSD = trialName %in% c("spacetask012reversed", "spacetask012")) %>%#
+                                    #mutate(level_3split=as_factor(level_3split)) %>%#
+                                    #group_by(Participant.Private.ID, level_3split) %>%#
+                                    group_by(Participant.Private.ID) %>%#
+                                    summarise( #
+                                        #meanchangeTF=dplyr::first(meanchange),#
+                                        #SDhighcondit=dplyr::first(SDhigh),#
+                                        masq_total_score=dplyr::first(masq_total_score), #
+                                        gdd_score=dplyr::first(gdd_score),#
+                                        aa_score=dplyr::first(aa_score),#
+                                        gda_score=dplyr::first(gda_score),#
+                                        ad_score=dplyr::first(ad_score),#
+                                        masqCombined_anxiety=sum(aa_score, gda_score),#
+                                        masqCombined_depression=sum(ad_score, gdd_score),#
+                                        gamingtime=dplyr::first(gamingtime),#
+                                        pdi_total=dplyr::first(pdi_total),#
+                                        dsm_total=dplyr::first(dsm_total),#
+                                        green_total=dplyr::first(green_total),#
+                                        gamers=dplyr::first(gamers),#
+                                        education=dplyr::first(education),#
+                                        ethnicity=dplyr::first(ethnicity),#
+                                        employment=dplyr::first(employment),#
+                                        psychep=dplyr::first(psychep), #
+                                        psychdx=dplyr::first(psychdx),#
+                                        neurologicalImp=dplyr::first(devdx),#
+                                        spq_total=dplyr::first(spq_total),#
+                                        wideStartSD=dplyr::first(startSD),#
+                                            L3_mux_F=dplyr::first(L3_f_mux), #
+                                            L3_mux_R=dplyr::first(L3_f_mux), #
+                                            L3_saa_0_F=dplyr::first(L3_f_mua),#
+                                            L3_saa_0_R=dplyr::first(L3_r_mua),#
+                                            L3_kax_F=dplyr::first(L3_f_kax),#
+                                            L3_kax_R=dplyr::first(L3_r_kax),#
+                                            L3_kaa_F=dplyr::first(L3_f_kaa),#
+                                            L3_kaa_R=dplyr::first(L3_r_kaa),#
+                                            L3_be1_F=dplyr::first(L3_f_be1),#
+                                            L3_be1_R=dplyr::first(L3_r_be1),#
+                                            L3_zem_F=dplyr::first(L3_f_zem),#
+                                            L3_zem_R=dplyr::first(L3_r_zem),#
+                                            L3_zes_F=dplyr::first(L3_f_zes),#
+                                            L3_zes_R=dplyr::first(L3_r_zes),#
+                                        L4_mux_F=dplyr::first(L4_f_mux), #
+                                           L4_mux_R=dplyr::first(L4_f_mux), #
+                                            L4_saa_0_F=dplyr::first(L4_f_mua),#
+                                            L4_saa_0_R=dplyr::first(L4_r_mua),#
+                                            L4_kax_F=dplyr::first(L4_f_kax),#
+                                            L4_kax_R=dplyr::first(L4_r_kax),#
+                                            L4_kaa_F=dplyr::first(L4_f_kaa),#
+                                            L4_kaa_R=dplyr::first(L4_r_kaa),#
+                                            L4_be1_F=dplyr::first(L4_f_be1),#
+                                            L4_be1_R=dplyr::first(L4_r_be1),#
+                                            L4_zem_F=dplyr::first(L4_f_zem),#
+                                            L4_zem_R=dplyr::first(L4_r_zem),#
+                                            L4_zes_F=dplyr::first(L4_f_zes),#
+                                            L4_zes_R=dplyr::first(L4_r_zes),#
+                                        L5_mux_F=dplyr::first(L5_f_mux), #
+                                            L5_mux_R=dplyr::first(L5_r_mux), #
+                                            L5_saa_0_F=dplyr::first(L5_f_mua),#
+                                            L5_saa_0_R=dplyr::first(L5_r_mua),#
+                                            L5_kax_F=dplyr::first(L5_f_kax),#
+                                            L5_kax_R=dplyr::first(L5_r_kax),#
+                                            L5_kaa_F=dplyr::first(L5_f_kaa),#
+                                            L5_kaa_R=dplyr::first(L5_r_kaa),#
+                                            L5_be1_F=dplyr::first(L5_f_be1),#
+                                            L5_be1_R=dplyr::first(L5_r_be1),#
+                                            L5_zem_F=dplyr::first(L5_f_zem),#
+                                            L5_zem_R=dplyr::first(L5_r_zem),#
+                                            L5_zes_F=dplyr::first(L5_f_zes),#
+                                            L5_zes_R=dplyr::first(L5_r_zes),#
+                                        L6_mux_F=dplyr::first(L6_f_mux),#
+                                            L6_mux_R=dplyr::first(L6_r_mux),  #
+                                            L6_saa_0_F=dplyr::first(L6_f_mua),#
+                                            L6_saa_0_R=dplyr::first(L6_r_mua),#
+                                            L6_kax_F=dplyr::first(L6_f_kax),#
+                                            L6_kax_R=dplyr::first(L6_r_kax),                                            #
+                                            L6_kaa_F=dplyr::first(L6_f_kaa),#
+                                            L6_kaa_R=dplyr::first(L6_r_kaa),#
+                                            L6_be1_F=dplyr::first(L6_f_be1),#
+                                            L6_be1_R=dplyr::first(L6_r_be1), #
+                                            L6_zem_F=dplyr::first(L6_f_zem),#
+                                            L6_zem_R=dplyr::first(L6_r_zem),#
+                                            L6_zes_F=dplyr::first(L6_f_zes),#
+                                            L6_zes_R=dplyr::first(L6_r_zes)) %>%#
+                            unite("L3_mux", L3_mux_F:L3_mux_R, na.rm = TRUE, remove = TRUE) %>% #SET TO FLASE if you want to see the OG cols and vals#
+                                unite("L3_saa", L3_saa_0_F:L3_saa_0_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kax", L3_kax_F:L3_kax_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kaa", L3_kaa_F:L3_kaa_R, na.rm = TRUE, remove = TRUE) %>%          #
+                                unite("L3_be1", L3_be1_F:L3_be1_R, na.rm = TRUE, remove = TRUE) %>%            #
+                                unite("L3_zem", L3_zem_F:L3_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L3_zes", L3_zes_F:L3_zes_R, na.rm = TRUE, remove = TRUE) %>% #
+                            unite("L4_mux", L4_mux_F:L4_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L4_saa_0", L4_saa_0_F:L4_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L4_kax", L4_kax_F:L4_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_kaa", L4_kaa_F:L4_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L4_be1", L4_be1_F:L4_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zem", L4_zem_F:L4_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zes", L4_zes_F:L4_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L5_mux", L5_mux_F:L5_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L5_saa_0", L5_saa_0_F:L5_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L5_kax", L5_kax_F:L5_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_kaa", L5_kaa_F:L5_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L5_be1", L5_be1_F:L5_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zem", L5_zem_F:L5_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zes", L5_zes_F:L5_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L6_mux", L6_mux_F:L6_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L6_saa_0", L6_saa_0_F:L6_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L6_kax", L6_kax_F:L6_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_kaa", L6_kaa_F:L6_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L6_be1", L6_be1_F:L6_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zem", L6_zem_F:L6_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zes", L6_zes_F:L6_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                               #mutate( trialName=as.factor(trialName), #
+                                    #    device_type=as.factor(device_type)) %>%#
+                                mutate_if(is_character, as.numeric)
+plotting %>% summary()
+p<-"be1"#
+#
+                        modNull<-#
+                                long_df %>%#
+                                    filter(param==p) %>%#
+                                    #drop_na %>%#
+                                    lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))#
+                        modNull_covariates<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~ ethnicity + employment + psychdx + neurologicalImp + gamers + education +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        mod_level<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~  level +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modSPQ<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~  level*spq_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modSPQ_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                       # drop_na %>%#
+                                        lmer(value ~  level + spq_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modPara<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~  level*green_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modPara_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~  level + green_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modDelusions<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~  level*pdi_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modDelusions_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                        #drop_na %>%#
+                                        lmer(value ~  level + pdi_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                                        MuMIn::model.sel(modNull,#
+                                                        modNull_covariates,#
+                                                        mod_level,#
+                                                        modSPQ,#
+                                                        modSPQ_noint,#
+                                                        modPara,#
+                                                        modPara_noint,#
+                                                        modDelusions,#
+                                                        modDelusions_noint)
+#################################################################################################################################################
+# 1. Packages and path to project directory #######
+#################################################################################################################################################
+    #set seed and load pacakges #
+        set.seed(0.1)#
+        library(tidyverse)#
+        #library(ggplot2)#
+        #library(ggplotify)#
+        #library(nlme)#
+        library(lme4)#
+        library(lmerTest)#
+        library(sjPlot)#
+        library(patchwork)#
+        library(ggpubr)#
+#
+        options(scipen=999)#
+#
+#################################################################################################################################################
+#Read in data#
+#################################################################################################################################################
+#
+    #Parameter files exported from MATLAB#
+        L3_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level3.csv") #
+        L4_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level4.csv")#
+        L5_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level5.csv")#
+        L6_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level6.csv")#
+#
+        L3_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level3.csv")#
+        L4_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level4.csv")#
+        L5_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level5.csv")#
+        L6_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level6.csv")#
+    #read in main data frame  #
+            Genpop<- readRDS("/Users/tg625/Documents/PDA/Directory/Data/GenPop2Tibble.RDS") %>%#
+                filter(level!="1") %>%#
+                filter(device_type!="tablet") %>% #only one tablet - so remove#
+                #filter(devdx.text %in% c("ADHD", "Chronic migraine")) %>% #exclude all expect ADHD and chronic migraine (n10 altogether)#
+                filter(devdx!="Yes (if you feel comfortable to do so please specify)") %>%#
+                mutate(BW=110-participantConfidence)  %>% #
+                mutate(bw_pe=(BW/PE)) %>%#
+                mutate_if(is_character, as_factor) %>%#
+                mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                mutate(level=as.factor(level)) %>%#
+                mutate(gamers=gamingtime.quant>2) %>%#
+                mutate(PEscaled=abs(scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition)) %>%#
+                mutate(PEsignedScaled=scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition) %>%#
+                mutate(meanchange=Mean != dplyr::lag(Mean)) %>%#
+                mutate(SDhigh = SD %in% 0.12) %>%#
+                mutate(correctedL6trialScore = case_when(level == 6  & trialScore < 0 ~ 0, #correct level 6 scores#
+                                            level == 6 & trialScore>0  ~ trialScore/2,#
+                                            TRUE ~ as.numeric(trialScore))) %>%##
+                mutate(level_3split = case_when( level == 3 & SDhigh == TRUE ~ "3highnoise",#
+                                                level == 3 & SDhigh == FALSE ~ "3lownoise",#
+                                                level == 4 ~ "4",#
+                                                level == 5 ~ "5",#
+                                               level == 6 ~ "6"))#
+#
+#################################################################################################################################################
+#joining datasets, making dataframe#
+#################################################################################################################################################
+#
+        #create direction dfs#
+            GenpopForward<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003', 'spacetask012')) #%>%#
+                        #group_by(level_3split)#
+#
+            GenpopReversed<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003reversed', 'spacetask012reversed')) #%>%#
+                        #group_by(level_3split)#
+        #get list of IDs in the order they were fed into the HGF #
+        #bind ID to params#
+            PID_for<-GenpopForward %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+#
+            ParamsandIDs<-cbind(L3_params_F, L4_params_F, L5_params_F, L6_params_F, PID_for)#
+#
+            ParamsandIDs <- ParamsandIDs %>%#
+                                            rename(Participant.Private.ID=PID_for)#
+#
+            PID_rev<-GenpopReversed %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+            ParamsandIDsReversed<-cbind(L3_params_R, L4_params_R, L5_params_R, L6_params_R, PID_rev)#
+#
+            ParamsandIDsReversed <- ParamsandIDsReversed %>%#
+                                                rename(Participant.Private.ID=PID_rev)#
+#
+        #left join to main data#
+            temp <- Genpop %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=Genpop, y=ParamsandIDs, by="Participant.Private.ID")#
+            GenpopwithParams <- temp %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=temp, y=ParamsandIDsReversed, by="Participant.Private.ID") #
+#################################################################################################################################################
+#creating modelling df#
+#################################################################################################################################################
+       plotting <- GenpopwithParams %>%#
+                                    mutate(gamers=gamingtime.quant>2) %>% #
+                                    filter(!level==2) %>%#
+                                    mutate(startSD = trialName %in% c("spacetask012reversed", "spacetask012")) %>%#
+                                    #mutate(level_3split=as_factor(level_3split)) %>%#
+                                    #group_by(Participant.Private.ID, level_3split) %>%#
+                                    group_by(Participant.Private.ID) %>%#
+                                    summarise( #
+                                        #meanchangeTF=dplyr::first(meanchange),#
+                                        #SDhighcondit=dplyr::first(SDhigh),#
+                                        masq_total_score=dplyr::first(masq_total_score), #
+                                        gdd_score=dplyr::first(gdd_score),#
+                                        aa_score=dplyr::first(aa_score),#
+                                        gda_score=dplyr::first(gda_score),#
+                                        ad_score=dplyr::first(ad_score),#
+                                        masqCombined_anxiety=sum(aa_score, gda_score),#
+                                        masqCombined_depression=sum(ad_score, gdd_score),#
+                                        gamingtime=dplyr::first(gamingtime),#
+                                        pdi_total=dplyr::first(pdi_total),#
+                                        dsm_total=dplyr::first(dsm_total),#
+                                        green_total=dplyr::first(green_total),#
+                                        gamers=dplyr::first(gamers),#
+                                        education=dplyr::first(education),#
+                                        ethnicity=dplyr::first(ethnicity),#
+                                        employment=dplyr::first(employment),#
+                                        psychep=dplyr::first(psychep), #
+                                        psychdx=dplyr::first(psychdx),#
+                                        neurologicalImp=dplyr::first(devdx),#
+                                        spq_total=dplyr::first(spq_total),#
+                                        wideStartSD=dplyr::first(startSD),#
+                                            L3_mux_F=dplyr::first(L3_f_mux), #
+                                            L3_mux_R=dplyr::first(L3_f_mux), #
+                                            L3_saa_0_F=dplyr::first(L3_f_mua),#
+                                            L3_saa_0_R=dplyr::first(L3_r_mua),#
+                                            L3_kax_F=dplyr::first(L3_f_kax),#
+                                            L3_kax_R=dplyr::first(L3_r_kax),#
+                                            L3_kaa_F=dplyr::first(L3_f_kaa),#
+                                            L3_kaa_R=dplyr::first(L3_r_kaa),#
+                                            L3_be1_F=dplyr::first(L3_f_be1),#
+                                            L3_be1_R=dplyr::first(L3_r_be1),#
+                                            L3_zem_F=dplyr::first(L3_f_zem),#
+                                            L3_zem_R=dplyr::first(L3_r_zem),#
+                                            L3_zes_F=dplyr::first(L3_f_zes),#
+                                            L3_zes_R=dplyr::first(L3_r_zes),#
+                                        L4_mux_F=dplyr::first(L4_f_mux), #
+                                           L4_mux_R=dplyr::first(L4_f_mux), #
+                                            L4_saa_0_F=dplyr::first(L4_f_mua),#
+                                            L4_saa_0_R=dplyr::first(L4_r_mua),#
+                                            L4_kax_F=dplyr::first(L4_f_kax),#
+                                            L4_kax_R=dplyr::first(L4_r_kax),#
+                                            L4_kaa_F=dplyr::first(L4_f_kaa),#
+                                            L4_kaa_R=dplyr::first(L4_r_kaa),#
+                                            L4_be1_F=dplyr::first(L4_f_be1),#
+                                            L4_be1_R=dplyr::first(L4_r_be1),#
+                                            L4_zem_F=dplyr::first(L4_f_zem),#
+                                            L4_zem_R=dplyr::first(L4_r_zem),#
+                                            L4_zes_F=dplyr::first(L4_f_zes),#
+                                            L4_zes_R=dplyr::first(L4_r_zes),#
+                                        L5_mux_F=dplyr::first(L5_f_mux), #
+                                            L5_mux_R=dplyr::first(L5_r_mux), #
+                                            L5_saa_0_F=dplyr::first(L5_f_mua),#
+                                            L5_saa_0_R=dplyr::first(L5_r_mua),#
+                                            L5_kax_F=dplyr::first(L5_f_kax),#
+                                            L5_kax_R=dplyr::first(L5_r_kax),#
+                                            L5_kaa_F=dplyr::first(L5_f_kaa),#
+                                            L5_kaa_R=dplyr::first(L5_r_kaa),#
+                                            L5_be1_F=dplyr::first(L5_f_be1),#
+                                            L5_be1_R=dplyr::first(L5_r_be1),#
+                                            L5_zem_F=dplyr::first(L5_f_zem),#
+                                            L5_zem_R=dplyr::first(L5_r_zem),#
+                                            L5_zes_F=dplyr::first(L5_f_zes),#
+                                            L5_zes_R=dplyr::first(L5_r_zes),#
+                                        L6_mux_F=dplyr::first(L6_f_mux),#
+                                            L6_mux_R=dplyr::first(L6_r_mux),  #
+                                            L6_saa_0_F=dplyr::first(L6_f_mua),#
+                                            L6_saa_0_R=dplyr::first(L6_r_mua),#
+                                            L6_kax_F=dplyr::first(L6_f_kax),#
+                                            L6_kax_R=dplyr::first(L6_r_kax),                                            #
+                                            L6_kaa_F=dplyr::first(L6_f_kaa),#
+                                            L6_kaa_R=dplyr::first(L6_r_kaa),#
+                                            L6_be1_F=dplyr::first(L6_f_be1),#
+                                            L6_be1_R=dplyr::first(L6_r_be1), #
+                                            L6_zem_F=dplyr::first(L6_f_zem),#
+                                            L6_zem_R=dplyr::first(L6_r_zem),#
+                                            L6_zes_F=dplyr::first(L6_f_zes),#
+                                            L6_zes_R=dplyr::first(L6_r_zes)) %>%#
+                            unite("L3_mux", L3_mux_F:L3_mux_R, na.rm = TRUE, remove = TRUE) %>% #SET TO FLASE if you want to see the OG cols and vals#
+                                unite("L3_saa", L3_saa_0_F:L3_saa_0_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kax", L3_kax_F:L3_kax_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kaa", L3_kaa_F:L3_kaa_R, na.rm = TRUE, remove = TRUE) %>%          #
+                                unite("L3_be1", L3_be1_F:L3_be1_R, na.rm = TRUE, remove = TRUE) %>%            #
+                                unite("L3_zem", L3_zem_F:L3_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L3_zes", L3_zes_F:L3_zes_R, na.rm = TRUE, remove = TRUE) %>% #
+                            unite("L4_mux", L4_mux_F:L4_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L4_saa_0", L4_saa_0_F:L4_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L4_kax", L4_kax_F:L4_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_kaa", L4_kaa_F:L4_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L4_be1", L4_be1_F:L4_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zem", L4_zem_F:L4_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zes", L4_zes_F:L4_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L5_mux", L5_mux_F:L5_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L5_saa_0", L5_saa_0_F:L5_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L5_kax", L5_kax_F:L5_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_kaa", L5_kaa_F:L5_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L5_be1", L5_be1_F:L5_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zem", L5_zem_F:L5_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zes", L5_zes_F:L5_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L6_mux", L6_mux_F:L6_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L6_saa_0", L6_saa_0_F:L6_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L6_kax", L6_kax_F:L6_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_kaa", L6_kaa_F:L6_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L6_be1", L6_be1_F:L6_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zem", L6_zem_F:L6_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zes", L6_zes_F:L6_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                               #mutate( trialName=as.factor(trialName), #
+                                    #    device_type=as.factor(device_type)) %>%#
+                                mutate_if(is_character, as.numeric)#
+                            genpop2_averaged <- Genpop %>%#
+                                                        filter(level %in% c(3:6)) %>%#
+                                                        group_by(Participant.Private.ID, level) %>%#
+                                                        summarise(meanscore=mean(trialScore),#
+                                                            score=mean(trialScore), #
+                                                            meancorrectedL6trialScore=mean(correctedL6trialScore),#
+                                                            meanconf=mean(participantConfidence),#
+                                                            sumsuccess=sum(success/length(level)),#
+                                                            meanPE=mean(PE),#
+                                                            meanPEscaled=mean(PEscaled),#
+                                                            meanPEsignedScaled=mean(PEsignedScaled),#
+                                                            meanPerfE=mean(PerfE))                                                       #
+                    #Long df required for modelling #
+                            long_df <- plotting %>% #
+                                            #group_by(level_3split) %>%#
+                                            pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%  #
+                                            #group_by(level) %>%                                         #
+                                            left_join(x=., y=genpop2_averaged, by=c("Participant.Private.ID", "level")) %>%#
+                                            mutate_if(is_character, as_factor) #
+#
+                    #Run contrasts to implement backcontrast comparisons during modelling         #
+                            long_df$level<-droplevels(long_df$level)#
+                                            cMat <- cbind( c(-1,1,0,0), # 3 vs 4#
+                                                        c(0,-1,1,0), # 4 vs 5#
+                                                        c(0,0,-1,1)) #5vs 6#
+                                            contrasts(long_df$level) <-cMat#
+                                            colnames(attr(long_df$level, "contrasts")) <- c("3v4", "4v5", "5v6")
+plotting
+long_df
+long_df %>%#
+                                    filter(param==p) %>%#
+                                    filter(level!=4) %>%#
+                                    drop_na %>% #
+                                    mutate(value=log(value+0.0001)) %>% #
+                                    lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=.,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+p="kX"
+p="kax"
+long_df %>%#
+                                    filter(param==p) %>%#
+                                    filter(level!=4) %>%#
+                                    drop_na %>% #
+                                    mutate(value=log(value+0.0001)) %>% #
+                                    lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=.,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+long_df %>%#
+        heavyLme(fixed, random, groups, data, family = Student(df = 4),#
+        subset, na.action, control)
+long_df %>%#
+                                    filter(param==p) %>%#
+                                    drop_na#
+                                    lm(formula=value~level, data=d) %>%#
+                                    car::qqPlot()
+d<-long_df %>%#
+                                    filter(param==p) %>%#
+                                    drop_na#
+                                    lm(formula=value~level, data=d) %>%#
+                                    car::qqPlot()
+sort(modNull$value) %>% density %>% plot
+modNull<-#
+                                long_df %>%#
+                                    filter(param==p) %>%#
+                                    filter(level!=4) %>%#
+                                    drop_na %>% #
+                                    mutate(value=log(value+0.0001)) %>% #
+                                    lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=.,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))#
+#
+                                                            car::qqPlot(resid(modNull))
+sort(modNull$value) %>% density %>% plot
+modNull %>%#
+    ggplot() +#
+        geom_density(aes(x=value, fill=level))+#
+        facet_wrap(~level)
+modNull<-#
+                                long_df %>%#
+                                    filter(param==p) %>%#
+                                    filter(level!=4) %>%#
+                                    drop_na %>% #
+                                    mutate(value=log(value+0.0001)) %>% #
+                                    lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=.,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))
+modNull %>%#
+    ggplot() +#
+        geom_density(aes(x=value, fill=level))+#
+        facet_wrap(~level)
+long_df %>%#
+    ggplot() +#
+        geom_density(aes(x=value, fill=level))+#
+        facet_wrap(~level)
+long_df %>%#
+    ggplot() +#
+        geom_density(aes(x=value, fill=level))
+p
+p="kaa"
+long_df %>%#
+    ggplot() +#
+        geom_density(aes(x=value, fill=level))
+long_df %>%#
+    ggplot() +#
+        geom_density(aes(x=value, fill=level))+#
+        facet_wrap(~level)
+kaxx/kaa <=20: 0
+#set seed and load pacakges #
+        set.seed(0.1)#
+        library(tidyverse)#
+        #library(ggplot2)#
+        #library(ggplotify)#
+        #library(nlme)#
+        library(lme4)#
+        library(lmerTest)#
+        library(sjPlot)#
+        library(patchwork)#
+        library(ggpubr)#
+#
+        options(scipen=999)#
+#
+#################################################################################################################################################
+#Read in data#
+#################################################################################################################################################
+#
+    #Parameter files exported from MATLAB#
+        L3_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level3.csv") #
+        L4_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level4.csv")#
+        L5_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level5.csv")#
+        L6_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level6.csv")#
+#
+        L3_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level3.csv")#
+        L4_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level4.csv")#
+        L5_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level5.csv")#
+        L6_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level6.csv")#
+    #read in main data frame  #
+            Genpop<- readRDS("/Users/tg625/Documents/PDA/Directory/Data/GenPop2Tibble.RDS") %>%#
+                filter(level!="1") %>%#
+                filter(device_type!="tablet") %>% #only one tablet - so remove#
+                #filter(devdx.text %in% c("ADHD", "Chronic migraine")) %>% #exclude all expect ADHD and chronic migraine (n10 altogether)#
+                filter(devdx!="Yes (if you feel comfortable to do so please specify)") %>%#
+                mutate(BW=110-participantConfidence)  %>% #
+                mutate(bw_pe=(BW/PE)) %>%#
+                mutate_if(is_character, as_factor) %>%#
+                mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                mutate(level=as.factor(level)) %>%#
+                mutate(gamers=gamingtime.quant>2) %>%#
+                mutate(PEscaled=abs(scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition)) %>%#
+                mutate(PEsignedScaled=scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition) %>%#
+                mutate(meanchange=Mean != dplyr::lag(Mean)) %>%#
+                mutate(SDhigh = SD %in% 0.12) %>%#
+                mutate(correctedL6trialScore = case_when(level == 6  & trialScore < 0 ~ 0, #correct level 6 scores#
+                                            level == 6 & trialScore>0  ~ trialScore/2,#
+                                            TRUE ~ as.numeric(trialScore))) %>%##
+                mutate(level_3split = case_when( level == 3 & SDhigh == TRUE ~ "3highnoise",#
+                                                level == 3 & SDhigh == FALSE ~ "3lownoise",#
+                                                level == 4 ~ "4",#
+                                                level == 5 ~ "5",#
+                                               level == 6 ~ "6"))#
+#
+#################################################################################################################################################
+#joining datasets, making dataframe#
+#################################################################################################################################################
+#
+        #create direction dfs#
+            GenpopForward<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003', 'spacetask012')) #%>%#
+                        #group_by(level_3split)#
+#
+            GenpopReversed<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003reversed', 'spacetask012reversed')) #%>%#
+                        #group_by(level_3split)#
+        #get list of IDs in the order they were fed into the HGF #
+        #bind ID to params#
+            PID_for<-GenpopForward %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+#
+            ParamsandIDs<-cbind(L3_params_F, L4_params_F, L5_params_F, L6_params_F, PID_for)#
+#
+            #L3fIDexc<-unique(ParamsandIDs$Participant.Private.ID[14])#
+            L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])#
+            L5fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(28, 33, 65, 90, 147, 148, 149, 224,253, 272)])#
+            L6fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(65, 118, 159, 223, 267)])#
+#
+            excFullList_For<-c(L4fIDexc, L5fIDexc, L6fIDexc)#
+#
+            ParamsandIDs <- ParamsandIDs %>%#
+                                            rename(Participant.Private.ID=PID_for)#
+#
+            PID_rev<-GenpopReversed %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+            ParamsandIDsReversed<-cbind(L3_params_R, L4_params_R, L5_params_R, L6_params_R, PID_rev)#
+#
+            L3rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(25)])#
+            L4rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(112, 128, 144, 163, 180, 223)])#
+            L5rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(61)])#
+            L6rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(26, 69, 152, 185, 188, 214, 242, 275)])#
+#
+            excFullList_Rev<-c(L3rIDexc,L4rIDexc,L5rIDexc,L6rIDexc)#
+#
+            ParamsandIDsReversed <- ParamsandIDsReversed %>%#
+                                                rename(Participant.Private.ID=PID_rev)#
+#
+        #left join to main data#
+            temp <- Genpop %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=Genpop, y=ParamsandIDs, by="Participant.Private.ID")#
+            GenpopwithParams <- temp %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=temp, y=ParamsandIDsReversed, by="Participant.Private.ID") #
+#
+            FullExclusionsIDs<-c(excFullList_For, excFullList_Rev)
+plotting <- GenpopwithParams %>%#
+                                    mutate(gamers=gamingtime.quant>2) %>% #
+                                    filter(!level==2) %>%#
+                                    mutate(startSD = trialName %in% c("spacetask012reversed", "spacetask012")) %>%#
+                                    #mutate(level_3split=as_factor(level_3split)) %>%#
+                                    #group_by(Participant.Private.ID, level_3split) %>%#
+                                    group_by(Participant.Private.ID) %>%#
+                                    summarise( #
+                                        #meanchangeTF=dplyr::first(meanchange),#
+                                        #SDhighcondit=dplyr::first(SDhigh),#
+                                        masq_total_score=dplyr::first(masq_total_score), #
+                                        gdd_score=dplyr::first(gdd_score),#
+                                        aa_score=dplyr::first(aa_score),#
+                                        gda_score=dplyr::first(gda_score),#
+                                        ad_score=dplyr::first(ad_score),#
+                                        masqCombined_anxiety=sum(aa_score, gda_score),#
+                                        masqCombined_depression=sum(ad_score, gdd_score),#
+                                        gamingtime=dplyr::first(gamingtime),#
+                                        pdi_total=dplyr::first(pdi_total),#
+                                        dsm_total=dplyr::first(dsm_total),#
+                                        green_total=dplyr::first(green_total),#
+                                        gamers=dplyr::first(gamers),#
+                                        education=dplyr::first(education),#
+                                        ethnicity=dplyr::first(ethnicity),#
+                                        employment=dplyr::first(employment),#
+                                        psychep=dplyr::first(psychep), #
+                                        psychdx=dplyr::first(psychdx),#
+                                        neurologicalImp=dplyr::first(devdx),#
+                                        spq_total=dplyr::first(spq_total),#
+                                        wideStartSD=dplyr::first(startSD),#
+                                            L3_mux_F=dplyr::first(L3_f_mux), #
+                                            L3_mux_R=dplyr::first(L3_f_mux), #
+                                            L3_saa_0_F=dplyr::first(L3_f_mua),#
+                                            L3_saa_0_R=dplyr::first(L3_r_mua),#
+                                            L3_kax_F=dplyr::first(L3_f_kax),#
+                                            L3_kax_R=dplyr::first(L3_r_kax),#
+                                            L3_kaa_F=dplyr::first(L3_f_kaa),#
+                                            L3_kaa_R=dplyr::first(L3_r_kaa),#
+                                            L3_be1_F=dplyr::first(L3_f_be1),#
+                                            L3_be1_R=dplyr::first(L3_r_be1),#
+                                            L3_zem_F=dplyr::first(L3_f_zem),#
+                                            L3_zem_R=dplyr::first(L3_r_zem),#
+                                            L3_zes_F=dplyr::first(L3_f_zes),#
+                                            L3_zes_R=dplyr::first(L3_r_zes),#
+                                        L4_mux_F=dplyr::first(L4_f_mux), #
+                                           L4_mux_R=dplyr::first(L4_f_mux), #
+                                            L4_saa_0_F=dplyr::first(L4_f_mua),#
+                                            L4_saa_0_R=dplyr::first(L4_r_mua),#
+                                            L4_kax_F=dplyr::first(L4_f_kax),#
+                                            L4_kax_R=dplyr::first(L4_r_kax),#
+                                            L4_kaa_F=dplyr::first(L4_f_kaa),#
+                                            L4_kaa_R=dplyr::first(L4_r_kaa),#
+                                            L4_be1_F=dplyr::first(L4_f_be1),#
+                                            L4_be1_R=dplyr::first(L4_r_be1),#
+                                            L4_zem_F=dplyr::first(L4_f_zem),#
+                                            L4_zem_R=dplyr::first(L4_r_zem),#
+                                            L4_zes_F=dplyr::first(L4_f_zes),#
+                                            L4_zes_R=dplyr::first(L4_r_zes),#
+                                        L5_mux_F=dplyr::first(L5_f_mux), #
+                                            L5_mux_R=dplyr::first(L5_r_mux), #
+                                            L5_saa_0_F=dplyr::first(L5_f_mua),#
+                                            L5_saa_0_R=dplyr::first(L5_r_mua),#
+                                            L5_kax_F=dplyr::first(L5_f_kax),#
+                                            L5_kax_R=dplyr::first(L5_r_kax),#
+                                            L5_kaa_F=dplyr::first(L5_f_kaa),#
+                                            L5_kaa_R=dplyr::first(L5_r_kaa),#
+                                            L5_be1_F=dplyr::first(L5_f_be1),#
+                                            L5_be1_R=dplyr::first(L5_r_be1),#
+                                            L5_zem_F=dplyr::first(L5_f_zem),#
+                                            L5_zem_R=dplyr::first(L5_r_zem),#
+                                            L5_zes_F=dplyr::first(L5_f_zes),#
+                                            L5_zes_R=dplyr::first(L5_r_zes),#
+                                        L6_mux_F=dplyr::first(L6_f_mux),#
+                                            L6_mux_R=dplyr::first(L6_r_mux),  #
+                                            L6_saa_0_F=dplyr::first(L6_f_mua),#
+                                            L6_saa_0_R=dplyr::first(L6_r_mua),#
+                                            L6_kax_F=dplyr::first(L6_f_kax),#
+                                            L6_kax_R=dplyr::first(L6_r_kax),                                            #
+                                            L6_kaa_F=dplyr::first(L6_f_kaa),#
+                                            L6_kaa_R=dplyr::first(L6_r_kaa),#
+                                            L6_be1_F=dplyr::first(L6_f_be1),#
+                                            L6_be1_R=dplyr::first(L6_r_be1), #
+                                            L6_zem_F=dplyr::first(L6_f_zem),#
+                                            L6_zem_R=dplyr::first(L6_r_zem),#
+                                            L6_zes_F=dplyr::first(L6_f_zes),#
+                                            L6_zes_R=dplyr::first(L6_r_zes)) %>%#
+                            unite("L3_mux", L3_mux_F:L3_mux_R, na.rm = TRUE, remove = TRUE) %>% #SET TO FLASE if you want to see the OG cols and vals#
+                                unite("L3_saa", L3_saa_0_F:L3_saa_0_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kax", L3_kax_F:L3_kax_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kaa", L3_kaa_F:L3_kaa_R, na.rm = TRUE, remove = TRUE) %>%          #
+                                unite("L3_be1", L3_be1_F:L3_be1_R, na.rm = TRUE, remove = TRUE) %>%            #
+                                unite("L3_zem", L3_zem_F:L3_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L3_zes", L3_zes_F:L3_zes_R, na.rm = TRUE, remove = TRUE) %>% #
+                            unite("L4_mux", L4_mux_F:L4_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L4_saa_0", L4_saa_0_F:L4_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L4_kax", L4_kax_F:L4_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_kaa", L4_kaa_F:L4_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L4_be1", L4_be1_F:L4_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zem", L4_zem_F:L4_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zes", L4_zes_F:L4_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L5_mux", L5_mux_F:L5_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L5_saa_0", L5_saa_0_F:L5_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L5_kax", L5_kax_F:L5_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_kaa", L5_kaa_F:L5_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L5_be1", L5_be1_F:L5_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zem", L5_zem_F:L5_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zes", L5_zes_F:L5_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L6_mux", L6_mux_F:L6_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L6_saa_0", L6_saa_0_F:L6_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L6_kax", L6_kax_F:L6_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_kaa", L6_kaa_F:L6_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L6_be1", L6_be1_F:L6_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zem", L6_zem_F:L6_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zes", L6_zes_F:L6_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                               #mutate( trialName=as.factor(trialName), #
+                                    #    device_type=as.factor(device_type)) %>%#
+                                mutate_if(is_character, as.numeric)
+genpop2_averaged <- Genpop %>%#
+                                    filter(level %in% c(3:6)) %>%#
+                                    group_by(Participant.Private.ID, level) %>%#
+                                    summarise(meanscore=mean(trialScore),#
+                                        score=mean(trialScore), #
+                                        meancorrectedL6trialScore=mean(correctedL6trialScore),#
+                                        meanconf=mean(participantConfidence),#
+                                        sumsuccess=sum(success/length(level)),#
+                                        meanPE=mean(PE),#
+                                        meanPEscaled=mean(PEscaled),#
+                                        meanPEsignedScaled=mean(PEsignedScaled),#
+                                        meanPerfE=mean(PerfE))
+genpop2_averaged
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param))
+temp
+plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level))
+plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID)
+plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)"))
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c("4025943","3984606","3981816","3932656")) %>% #
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>% #
+                                        filter(param=="be1")
+temp
+plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)"))
+plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param))
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c("4025943","3984606","3981816","3932656")) %>% #
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param))
+temp
+#################################################################################################################################################
+# 1. Packages and path to project directory #######
+#################################################################################################################################################
+    #set seed and load pacakges #
+        set.seed(0.1)#
+        library(tidyverse)#
+        #library(ggplot2)#
+        #library(ggplotify)#
+        #library(nlme)#
+        library(lme4)#
+        library(lmerTest)#
+        library(sjPlot)#
+        library(patchwork)#
+        library(ggpubr)#
+#
+        options(scipen=999)#
+#
+#################################################################################################################################################
+#Read in data#
+#################################################################################################################################################
+#
+    #Parameter files exported from MATLAB#
+        L3_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level3.csv") #
+        L4_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level4.csv")#
+        L5_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level5.csv")#
+        L6_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level6.csv")#
+#
+        L3_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level3.csv")#
+        L4_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level4.csv")#
+        L5_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level5.csv")#
+        L6_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level6.csv")#
+    #read in main data frame  #
+            Genpop<- readRDS("/Users/tg625/Documents/PDA/Directory/Data/GenPop2Tibble.RDS") %>%#
+                filter(level!="1") %>%#
+                filter(device_type!="tablet") %>% #only one tablet - so remove#
+                #filter(devdx.text %in% c("ADHD", "Chronic migraine")) %>% #exclude all expect ADHD and chronic migraine (n10 altogether)#
+                filter(devdx!="Yes (if you feel comfortable to do so please specify)") %>%#
+                mutate(BW=110-participantConfidence)  %>% #
+                mutate(bw_pe=(BW/PE)) %>%#
+                mutate_if(is_character, as_factor) %>%#
+                mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                mutate(level=as.factor(level)) %>%#
+                mutate(gamers=gamingtime.quant>2) %>%#
+                mutate(PEscaled=abs(scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition)) %>%#
+                mutate(PEsignedScaled=scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition) %>%#
+                mutate(meanchange=Mean != dplyr::lag(Mean)) %>%#
+                mutate(SDhigh = SD %in% 0.12) %>%#
+                mutate(correctedL6trialScore = case_when(level == 6  & trialScore < 0 ~ 0, #correct level 6 scores#
+                                            level == 6 & trialScore>0  ~ trialScore/2,#
+                                            TRUE ~ as.numeric(trialScore))) %>%##
+                mutate(level_3split = case_when( level == 3 & SDhigh == TRUE ~ "3highnoise",#
+                                                level == 3 & SDhigh == FALSE ~ "3lownoise",#
+                                                level == 4 ~ "4",#
+                                                level == 5 ~ "5",#
+                                               level == 6 ~ "6"))#
+#
+#################################################################################################################################################
+#joining datasets, making dataframe#
+#################################################################################################################################################
+#
+        #create direction dfs#
+            GenpopForward<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003', 'spacetask012')) #%>%#
+                        #group_by(level_3split)#
+#
+            GenpopReversed<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003reversed', 'spacetask012reversed')) #%>%#
+                        #group_by(level_3split)#
+        #get list of IDs in the order they were fed into the HGF #
+        #bind ID to params#
+            PID_for<-GenpopForward %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+#
+            ParamsandIDs<-cbind(L3_params_F, L4_params_F, L5_params_F, L6_params_F, PID_for)#
+#
+            #L3fIDexc<-unique(ParamsandIDs$Participant.Private.ID[14])#
+            L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])#
+            L5fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(28, 33, 65, 90, 147, 148, 149, 224,253, 272)])#
+            L6fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(65, 118, 159, 223, 267)])#
+#
+            excFullList_For<-c(L4fIDexc, L5fIDexc, L6fIDexc)#
+#
+            ParamsandIDs <- ParamsandIDs %>%#
+                                            rename(Participant.Private.ID=PID_for)#
+#
+            PID_rev<-GenpopReversed %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+            ParamsandIDsReversed<-cbind(L3_params_R, L4_params_R, L5_params_R, L6_params_R, PID_rev)#
+#
+            L3rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(25)])#
+            L4rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(112, 128, 144, 163, 180, 223)])#
+            L5rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(61)])#
+            L6rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(26, 69, 152, 185, 188, 214, 242, 275)])#
+#
+            excFullList_Rev<-c(L3rIDexc,L4rIDexc,L5rIDexc,L6rIDexc)#
+#
+            ParamsandIDsReversed <- ParamsandIDsReversed %>%#
+                                                rename(Participant.Private.ID=PID_rev)#
+#
+        #left join to main data#
+            temp <- Genpop %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=Genpop, y=ParamsandIDs, by="Participant.Private.ID")#
+            GenpopwithParams <- temp %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=temp, y=ParamsandIDsReversed, by="Participant.Private.ID") #
+#
+            FullExclusionsIDs<-c(excFullList_For, excFullList_Rev)#
+#################################################################################################################################################
+#creating modelling df#
+#################################################################################################################################################
+       plotting <- GenpopwithParams %>%#
+                                    mutate(gamers=gamingtime.quant>2) %>% #
+                                    filter(!level==2) %>%#
+                                    mutate(startSD = trialName %in% c("spacetask012reversed", "spacetask012")) %>%#
+                                    #mutate(level_3split=as_factor(level_3split)) %>%#
+                                    #group_by(Participant.Private.ID, level_3split) %>%#
+                                    group_by(Participant.Private.ID) %>%#
+                                    summarise( #
+                                        #meanchangeTF=dplyr::first(meanchange),#
+                                        #SDhighcondit=dplyr::first(SDhigh),#
+                                        masq_total_score=dplyr::first(masq_total_score), #
+                                        gdd_score=dplyr::first(gdd_score),#
+                                        aa_score=dplyr::first(aa_score),#
+                                        gda_score=dplyr::first(gda_score),#
+                                        ad_score=dplyr::first(ad_score),#
+                                        masqCombined_anxiety=sum(aa_score, gda_score),#
+                                        masqCombined_depression=sum(ad_score, gdd_score),#
+                                        gamingtime=dplyr::first(gamingtime),#
+                                        pdi_total=dplyr::first(pdi_total),#
+                                        dsm_total=dplyr::first(dsm_total),#
+                                        green_total=dplyr::first(green_total),#
+                                        gamers=dplyr::first(gamers),#
+                                        education=dplyr::first(education),#
+                                        ethnicity=dplyr::first(ethnicity),#
+                                        employment=dplyr::first(employment),#
+                                        psychep=dplyr::first(psychep), #
+                                        psychdx=dplyr::first(psychdx),#
+                                        neurologicalImp=dplyr::first(devdx),#
+                                        spq_total=dplyr::first(spq_total),#
+                                        wideStartSD=dplyr::first(startSD),#
+                                            L3_mux_F=dplyr::first(L3_f_mux), #
+                                            L3_mux_R=dplyr::first(L3_f_mux), #
+                                            L3_saa_0_F=dplyr::first(L3_f_mua),#
+                                            L3_saa_0_R=dplyr::first(L3_r_mua),#
+                                            L3_kax_F=dplyr::first(L3_f_kax),#
+                                            L3_kax_R=dplyr::first(L3_r_kax),#
+                                            L3_kaa_F=dplyr::first(L3_f_kaa),#
+                                            L3_kaa_R=dplyr::first(L3_r_kaa),#
+                                            L3_be1_F=dplyr::first(L3_f_be1),#
+                                            L3_be1_R=dplyr::first(L3_r_be1),#
+                                            L3_zem_F=dplyr::first(L3_f_zem),#
+                                            L3_zem_R=dplyr::first(L3_r_zem),#
+                                            L3_zes_F=dplyr::first(L3_f_zes),#
+                                            L3_zes_R=dplyr::first(L3_r_zes),#
+                                        L4_mux_F=dplyr::first(L4_f_mux), #
+                                           L4_mux_R=dplyr::first(L4_f_mux), #
+                                            L4_saa_0_F=dplyr::first(L4_f_mua),#
+                                            L4_saa_0_R=dplyr::first(L4_r_mua),#
+                                            L4_kax_F=dplyr::first(L4_f_kax),#
+                                            L4_kax_R=dplyr::first(L4_r_kax),#
+                                            L4_kaa_F=dplyr::first(L4_f_kaa),#
+                                            L4_kaa_R=dplyr::first(L4_r_kaa),#
+                                            L4_be1_F=dplyr::first(L4_f_be1),#
+                                            L4_be1_R=dplyr::first(L4_r_be1),#
+                                            L4_zem_F=dplyr::first(L4_f_zem),#
+                                            L4_zem_R=dplyr::first(L4_r_zem),#
+                                            L4_zes_F=dplyr::first(L4_f_zes),#
+                                            L4_zes_R=dplyr::first(L4_r_zes),#
+                                        L5_mux_F=dplyr::first(L5_f_mux), #
+                                            L5_mux_R=dplyr::first(L5_r_mux), #
+                                            L5_saa_0_F=dplyr::first(L5_f_mua),#
+                                            L5_saa_0_R=dplyr::first(L5_r_mua),#
+                                            L5_kax_F=dplyr::first(L5_f_kax),#
+                                            L5_kax_R=dplyr::first(L5_r_kax),#
+                                            L5_kaa_F=dplyr::first(L5_f_kaa),#
+                                            L5_kaa_R=dplyr::first(L5_r_kaa),#
+                                            L5_be1_F=dplyr::first(L5_f_be1),#
+                                            L5_be1_R=dplyr::first(L5_r_be1),#
+                                            L5_zem_F=dplyr::first(L5_f_zem),#
+                                            L5_zem_R=dplyr::first(L5_r_zem),#
+                                            L5_zes_F=dplyr::first(L5_f_zes),#
+                                            L5_zes_R=dplyr::first(L5_r_zes),#
+                                        L6_mux_F=dplyr::first(L6_f_mux),#
+                                            L6_mux_R=dplyr::first(L6_r_mux),  #
+                                            L6_saa_0_F=dplyr::first(L6_f_mua),#
+                                            L6_saa_0_R=dplyr::first(L6_r_mua),#
+                                            L6_kax_F=dplyr::first(L6_f_kax),#
+                                            L6_kax_R=dplyr::first(L6_r_kax),                                            #
+                                            L6_kaa_F=dplyr::first(L6_f_kaa),#
+                                            L6_kaa_R=dplyr::first(L6_r_kaa),#
+                                            L6_be1_F=dplyr::first(L6_f_be1),#
+                                            L6_be1_R=dplyr::first(L6_r_be1), #
+                                            L6_zem_F=dplyr::first(L6_f_zem),#
+                                            L6_zem_R=dplyr::first(L6_r_zem),#
+                                            L6_zes_F=dplyr::first(L6_f_zes),#
+                                            L6_zes_R=dplyr::first(L6_r_zes)) %>%#
+                            unite("L3_mux", L3_mux_F:L3_mux_R, na.rm = TRUE, remove = TRUE) %>% #SET TO FLASE if you want to see the OG cols and vals#
+                                unite("L3_saa", L3_saa_0_F:L3_saa_0_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kax", L3_kax_F:L3_kax_R, na.rm = TRUE, remove = TRUE) %>%#
+                                unite("L3_kaa", L3_kaa_F:L3_kaa_R, na.rm = TRUE, remove = TRUE) %>%          #
+                                unite("L3_be1", L3_be1_F:L3_be1_R, na.rm = TRUE, remove = TRUE) %>%            #
+                                unite("L3_zem", L3_zem_F:L3_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L3_zes", L3_zes_F:L3_zes_R, na.rm = TRUE, remove = TRUE) %>% #
+                            unite("L4_mux", L4_mux_F:L4_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L4_saa_0", L4_saa_0_F:L4_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L4_kax", L4_kax_F:L4_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_kaa", L4_kaa_F:L4_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L4_be1", L4_be1_F:L4_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zem", L4_zem_F:L4_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L4_zes", L4_zes_F:L4_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L5_mux", L5_mux_F:L5_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L5_saa_0", L5_saa_0_F:L5_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L5_kax", L5_kax_F:L5_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_kaa", L5_kaa_F:L5_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L5_be1", L5_be1_F:L5_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zem", L5_zem_F:L5_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L5_zes", L5_zes_F:L5_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                            unite("L6_mux", L6_mux_F:L6_mux_R, na.rm = TRUE, remove = TRUE) %>%                  #
+                                unite("L6_saa_0", L6_saa_0_F:L6_saa_0_R, na.rm = TRUE, remove = TRUE) %>%     #
+                                unite("L6_kax", L6_kax_F:L6_kax_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_kaa", L6_kaa_F:L6_kaa_R, na.rm = TRUE, remove = TRUE) %>% #
+                                unite("L6_be1", L6_be1_F:L6_be1_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zem", L6_zem_F:L6_zem_R, na.rm = TRUE, remove = TRUE) %>%           #
+                                unite("L6_zes", L6_zes_F:L6_zes_R, na.rm = TRUE, remove = TRUE) %>%#
+                               #mutate( trialName=as.factor(trialName), #
+                                    #    device_type=as.factor(device_type)) %>%#
+                                mutate_if(is_character, as.numeric)#
+        genpop2_averaged <- Genpop %>%#
+                                    filter(level %in% c(3:6)) %>%#
+                                    group_by(Participant.Private.ID, level) %>%#
+                                    summarise(meanscore=mean(trialScore),#
+                                        score=mean(trialScore), #
+                                        meancorrectedL6trialScore=mean(correctedL6trialScore),#
+                                        meanconf=mean(participantConfidence),#
+                                        sumsuccess=sum(success/length(level)),#
+                                        meanPE=mean(PE),#
+                                        meanPEscaled=mean(PEscaled),#
+                                        meanPEsignedScaled=mean(PEsignedScaled),#
+                                        meanPerfE=mean(PerfE))     #
+#
+ temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ 1,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ 1,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ 1, TRUE~0)) %>%#
+                                        filter(exclusions_cutoffs==1)
+temp
+names(temp)
+temp %>% print(n=100)
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param))
+temp
+temp %>%select(param, value) %>% print(n=100)
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param))
+dim(temp)
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ 1,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ 1,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ 1, TRUE~0)) %>%#
+                                        filter(exclusions_cutoffs==1)
+dim(temp)
+temp %>%#
+                    filter(param=="kax") %>%#
+                    filter(level==6) %>%#
+                    group_by(exclusions_cutoffs) %>%#
+                    summarise(n())
+temp %>%#
+                    filter(param=="kaa") %>%#
+                    filter(level==6) %>%#
+                    group_by(exclusions_cutoffs) %>%#
+                    summarise(n())
+temp %>%#
+                    filter(param=="kaa") %>%#
+                    filter(level==5) %>%#
+                    group_by(exclusions_cutoffs) %>%#
+                    summarise(n())
+temp %>%#
+                    filter(param=="kax") %>%#
+                    filter(level==5) %>%#
+                    group_by(exclusions_cutoffs) %>%#
+                    summarise(n())
+temp %>%#
+                    filter(param=="kax") %>%#
+                    filter(level==4) %>%#
+                    group_by(exclusions_cutoffs) %>%#
+                    summarise(n())
+temp$level<-droplevels(temp$level)#
+                        cMat <- cbind( c(-1,1,0,0), # 3 vs 4#
+                                    c(0,-1,1,0), # 4 vs 5#
+                                    c(0,0,-1,1)) #5vs 6#
+                        contrasts(temp$level) <-cMat#
+                        colnames(attr(temp$level, "contrasts")) <- c("3v4", "4v5", "5v6")
+temp
+generateDensityPlot<-function(data, p) {#
+#
+                        denplot<- data %>%#
+                                        filter(param==p) %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")#
+#
+                        return(denplot)#
+#
+            }#
+#
+                        kaxDensity<-generateDensityPlot(temp, "kax")#
+                        kaaDensity<-generateDensityPlot(temp, "kaa")#
+                        be1Density<-generateDensityPlot(temp, "be1")#
+#
+                        kaxDensity<-generateDensityPlot(temp, "kax")#
+                        kaaDensity<-generateDensityPlot(temp, "kaa")#
+                        be1Density<-generateDensityPlot(temp, "be1")#
+#
+                        densityPlots<- kaxDensity / kaaDensity / be1Density
+densityPlots
+kaxDensity
+kaaDensity
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ 1,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ 1,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ 1, TRUE~0)) %>%#
+                                        filter(!exclusions_cutoffs==1)
+temp
+generateDensityPlot<-function(data, p) {#
+#
+                        denplot<- data %>%#
+                                        filter(param==p) %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")#
+#
+                        return(denplot)#
+#
+            }#
+#
+                        kaxDensity<-generateDensityPlot(temp, "kax")#
+                        kaaDensity<-generateDensityPlot(temp, "kaa")#
+                        be1Density<-generateDensityPlot(temp, "be1")#
+#
+                        densityPlots<- kaxDensity / kaaDensity / be1Density
+densityPlots
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ 1,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ 1,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ 1, TRUE~0)) %>%#
+                                        filter(!exclusions_cutoffs==1)
+temp
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ 1,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ 1,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ 1, TRUE~0)) %>%#
+                                        filter(exclusions_cutoffs==1)
+temp
+temp%>%select(level, value, param)
+generateDensityPlot<-function(data, p) {#
+#
+                        denplot<- data %>%#
+                                        filter(param==p) %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")#
+#
+                        return(denplot)#
+#
+            }#
+#
+                        kaxDensity<-generateDensityPlot(temp, "kax")#
+                        kaaDensity<-generateDensityPlot(temp, "kaa")#
+                        be1Density<-generateDensityPlot(temp, "be1")#
+#
+                        densityPlots<- kaxDensity / kaaDensity / be1Density
+densityPlots
+summary(temp)
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ 1,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ 1,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ 1)) %>%#
+                                        filter(exclusions_cutoffs==1)
+generateDensityPlot<-function(data, p) {#
+#
+                        denplot<- data %>%#
+                                        filter(param==p) %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")#
+#
+                        return(denplot)#
+#
+            }#
+#
+                        kaxDensity<-generateDensityPlot(temp, "kax")#
+                        kaaDensity<-generateDensityPlot(temp, "kaa")#
+                        be1Density<-generateDensityPlot(temp, "be1")#
+#
+                        densityPlots<- kaxDensity / kaaDensity / be1Density
+densityPlots
+summary(temp)
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param)) %>%#
+                                        #filter(param=="kaa") %>%#
+                                        #filter(level==3)#
+                                        mutate(exclusions_cutoffs=case_when(level==4 & param=="kax" & value<=60 ~ TRUE,#
+                                                                            level==3 & param=="kaa" & value<=5 ~ TRUE,#
+                                                                            level==5|6 & param=="kaa" | param=="kax" & value<=20 ~ TRUE)) %>%#
+                                        filter(exclusions_cutoffs==TRUE)
+temp
+temp$level<-droplevels(temp$level)#
+                        cMat <- cbind( c(-1,1,0,0), # 3 vs 4#
+                                    c(0,-1,1,0), # 4 vs 5#
+                                    c(0,0,-1,1)) #5vs 6#
+                        contrasts(temp$level) <-cMat#
+                        colnames(attr(temp$level, "contrasts")) <- c("3v4", "4v5", "5v6")
+generateDensityPlot<-function(data, p) {#
+#
+                        denplot<- data %>%#
+                                        filter(param==p) %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")#
+#
+                        return(denplot)#
+#
+            }#
+#
+                        kaxDensity<-generateDensityPlot(temp, "kax")#
+                        kaaDensity<-generateDensityPlot(temp, "kaa")#
+                        be1Density<-generateDensityPlot(temp, "be1")#
+#
+                        densityPlots<- kaxDensity / kaaDensity / be1Density
+densityPlots
+temp %>%#
+                                        filter(param=="be1") %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        #ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")
+temp <- plotting %>%#
+                                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%#
+                                        group_by(Participant.Private.ID, level) %>%#
+                                        filter(param %in% c("be1", "kax", "kaa")) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        filter(!Participant.Private.ID %in% c( "6656097", "6665571", "6633505", "6639637", "6639483", "6656218", "6656961", "6665274", "6671024",#
+                                                                                "6703919", "6639596", "6633842", "6656953", "6665337", "6694544", "6694665", "6694551", "6656964", #
+                                                                                "6665517", "6671079", "6656953", "6671014", "6633582", "6656957", "6671010",  "6639662", "6666737",#
+                                                                                "6671062", "6694474", "6633505", "6639602", "6656957", "6656101", "6639652", "6656995", "6703915",#
+                                                                                "6639637", "6639658", "6656218", "6665290", "6671067")) %>% #
+                                        #mutate(spqH=as.factor(spqH)) %>%#
+                                        mutate(level=as.factor(level)) %>%#
+                                        mutate(param=as.factor(param))
+temp %>%#
+                                        filter(param=="be1") %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        #ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")
+temp %>%#
+                                        filter(param=="kaa") %>%#
+                                        ggplot(aes(x=value)) +#
+                                        geom_density() +#
+                                        #ylab(p)+#
+                                        theme_classic() +#
+                                        facet_wrap(~level, scales = "free")
+temp
+set.seed(0.1)#
+        library(tidyverse)#
+        #library(ggplot2)#
+        #library(ggplotify)#
+        #library(nlme)#
+        library(lme4)#
+        library(lmerTest)#
+        library(sjPlot)#
+        library(patchwork)#
+        library(ggpubr)#
+#
+        options(scipen=999)#
+#
+#################################################################################################################################################
+#Read in data#
+#################################################################################################################################################
+#
+    #Parameter files exported from MATLAB#
+        L3_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level3.csv") #
+        L4_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level4.csv")#
+        L5_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level5.csv")#
+        L6_params_F<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_forward_level6.csv")#
+#
+        L3_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level3.csv")#
+        L4_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level4.csv")#
+        L5_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level5.csv")#
+        L6_params_R<-read.csv("/Users/tg625/Documents/PDA/Directory/Data/parameters_genpop_reverse_level6.csv")#
+    #read in main data frame  #
+            Genpop<- readRDS("/Users/tg625/Documents/PDA/Directory/Data/GenPop2Tibble.RDS") %>%#
+                filter(level!="1") %>%#
+                filter(device_type!="tablet") %>% #only one tablet - so remove#
+                #filter(devdx.text %in% c("ADHD", "Chronic migraine")) %>% #exclude all expect ADHD and chronic migraine (n10 altogether)#
+                filter(devdx!="Yes (if you feel comfortable to do so please specify)") %>%#
+                mutate(BW=110-participantConfidence)  %>% #
+                mutate(bw_pe=(BW/PE)) %>%#
+                mutate_if(is_character, as_factor) %>%#
+                mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                mutate(level=as.factor(level)) %>%#
+                mutate(gamers=gamingtime.quant>2) %>%#
+                mutate(PEscaled=abs(scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition)) %>%#
+                mutate(PEsignedScaled=scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition) %>%#
+                mutate(meanchange=Mean != dplyr::lag(Mean)) %>%#
+                mutate(SDhigh = SD %in% 0.12) %>%#
+                mutate(correctedL6trialScore = case_when(level == 6  & trialScore < 0 ~ 0, #correct level 6 scores#
+                                            level == 6 & trialScore>0  ~ trialScore/2,#
+                                            TRUE ~ as.numeric(trialScore))) %>%##
+                mutate(level_3split = case_when( level == 3 & SDhigh == TRUE ~ "3highnoise",#
+                                                level == 3 & SDhigh == FALSE ~ "3lownoise",#
+                                                level == 4 ~ "4",#
+                                                level == 5 ~ "5",#
+                                               level == 6 ~ "6"))
+Genpop
+GenpopForward<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003', 'spacetask012')) #%>%#
+                        #group_by(level_3split)#
+#
+            GenpopReversed<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003reversed', 'spacetask012reversed')) #%>%#
+                        #group_by(level_3split)#
+        #get list of IDs in the order they were fed into the HGF #
+        #bind ID to params#
+            PID_for<-GenpopForward %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+#
+            ParamsandIDs<-cbind(L3_params_F, L4_params_F, L5_params_F, L6_params_F, PID_for)#
+#
+            #L3fIDexc<-unique(ParamsandIDs$Participant.Private.ID[14])#
+            L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])#
+            L5fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(28, 33, 65, 90, 147, 148, 149, 224,253, 272)])#
+            L6fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(65, 118, 159, 223, 267)])#
+#
+            excFullList_For<-c(L4fIDexc, L5fIDexc, L6fIDexc)#
+#
+            ParamsandIDs <- ParamsandIDs %>%#
+                                            rename(Participant.Private.ID=PID_for)#
+#
+            PID_rev<-GenpopReversed %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+            ParamsandIDsReversed<-cbind(L3_params_R, L4_params_R, L5_params_R, L6_params_R, PID_rev)#
+#
+            L3rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(25)])#
+            L4rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(112, 128, 144, 163, 180, 223)])#
+            L5rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(61)])#
+            L6rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(26, 69, 152, 185, 188, 214, 242, 275)])#
+#
+            excFullList_Rev<-c(L3rIDexc,L4rIDexc,L5rIDexc,L6rIDexc)#
+#
+            ParamsandIDsReversed <- ParamsandIDsReversed %>%#
+                                                rename(Participant.Private.ID=PID_rev)#
+#
+        #left join to main data#
+            temp <- Genpop %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=Genpop, y=ParamsandIDs, by="Participant.Private.ID")#
+            GenpopwithParams <- temp %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=temp, y=ParamsandIDsReversed, by="Participant.Private.ID") #
+#
+            FullExclusionsIDs<-c(excFullList_For, excFullList_Rev)
+FullExclusionsIDs
+excFullList_Rev
+excFullList_For
+L6fIDexc
+L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])
+L4fIDexc
+L5fIDexc
+L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])#
+            L5fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(28, 33, 65, 90, 147, 148, 149, 224,253, 272)])#
+            L6fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(65, 118, 159, 223, 267)])
+L6fIDexc
+excFullList_For<-c(L4fIDexc, L5fIDexc, L6fIDexc)
+excFullList_For
+L3rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(25)])#
+            L4rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(112, 128, 144, 163, 180, 223)])#
+            L5rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(61)])#
+            L6rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(26, 69, 152, 185, 188, 214, 242, 275)])#
+#
+            excFullList_Rev<-c(L3rIDexc,L4rIDexc,L5rIDexc,L6rIDexc)
+excFullList_Rev
+FullExclusionsIDs<-c(excFullList_For, excFullList_Rev)
+FullExclusionsIDs
+create direction dfs#
+            GenpopForward<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003', 'spacetask012')) #%>%#
+                        #group_by(level_3split)#
+#
+            GenpopReversed<-Genpop %>%#
+                        filter(trialName %in% c('spacetask003reversed', 'spacetask012reversed')) #%>%#
+                        #group_by(level_3split)#
+        #get list of IDs in the order they were fed into the HGF #
+        #bind ID to params#
+            PID_for<-GenpopForward %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+#
+            ParamsandIDs<-cbind(L3_params_F, L4_params_F, L5_params_F, L6_params_F, PID_for)#
+#
+            #L3fIDexc<-unique(ParamsandIDs$Participant.Private.ID[14])#
+            L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])#
+            L5fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(28, 33, 65, 90, 147, 148, 149, 224,253, 272)])#
+            L6fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(65, 118, 159, 223, 267)])#
+#
+            excFullList_For<-c(L4fIDexc, L5fIDexc, L6fIDexc)#
+#
+            ParamsandIDs <- ParamsandIDs %>%#
+                                            rename(Participant.Private.ID=PID_for)#
+#
+            PID_rev<-GenpopReversed %>%#
+                                                group_by(Participant.Private.ID) %>%#
+                                                filter(level %in% c(3:6))  %>%#
+                                                select(participantPosition, participantConfidence, trialScore, level, TrialNumber) %>%#
+                                                pull(1) %>%#
+                                                unique#
+            ParamsandIDsReversed<-cbind(L3_params_R, L4_params_R, L5_params_R, L6_params_R, PID_rev)#
+#
+            L3rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(25)])#
+            L4rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(112, 128, 144, 163, 180, 223)])#
+            L5rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(61)])#
+            L6rIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(26, 69, 152, 185, 188, 214, 242, 275)])#
+#
+            excFullList_Rev<-c(L3rIDexc,L4rIDexc,L5rIDexc,L6rIDexc)#
+#
+            ParamsandIDsReversed <- ParamsandIDsReversed %>%#
+                                                rename(Participant.Private.ID=PID_rev)#
+#
+        #left join to main data#
+            temp <- Genpop %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=Genpop, y=ParamsandIDs, by="Participant.Private.ID")#
+            GenpopwithParams <- temp %>%#
+                                        group_by(Participant.Private.ID) %>%#
+                                        left_join(x=temp, y=ParamsandIDsReversed, by="Participant.Private.ID") #
+#
+            FullExclusionsIDs<-c(excFullList_For, excFullList_Rev)
+FullExclusionsIDs
+GenpopForward
+GenpopReversed
+PID_for
+ParamsandIDs
+L4fIDexc
+L4fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(53, 110, 163, 185, 194, 214, 221, 240, 278, 296)])#
+            L5fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(28, 33, 65, 90, 147, 148, 149, 224,253, 272)])#
+            L6fIDexc<-unique(ParamsandIDs$Participant.Private.ID[c(65, 118, 159, 223, 267)])
+L4fIDexc
+#################################################################################################################################################
+# 1. Packages and path to project directory #######
+#################################################################################################################################################
+    #set seed and load pacakges #
+        set.seed(0.1)#
+        library(tidyverse)#
+        #library(ggplot2)#
+        #library(ggplotify)#
+        #library(nlme)#
+        library(lme4)#
+        library(lmerTest)#
+        library(sjPlot)#
+        library(patchwork)#
+        library(ggpubr)#
+        library(MuMIn)#
+        options(scipen=999)#
+#
+        outputs<-"/Users/tg625/Documents/PDA/Directory/PHD/Outputs"#
+#
+        figures<-"/Users/tg625/Documents/PDA/Directory/PHD/Figures" #
+#
+#################################################################################################################################################
+#Read in data#
+#################################################################################################################################################
+#
+    cldat<-read.csv("/Users/tg625/Documents/PDA/Directory/PHD/Outputs/joineddat_cleaned_personwise_wide.csv") #
+#
+    Genpop<- readRDS("/Users/tg625/Documents/PDA/Directory/Data/GenPop2Tibble.RDS") %>%#
+                filter(level!="1") %>%#
+                filter(device_type!="tablet") %>% #only one tablet - so remove#
+                #filter(devdx.text %in% c("ADHD", "Chronic migraine")) %>% #exclude all expect ADHD and chronic migraine (n10 altogether)#
+                filter(devdx!="Yes (if you feel comfortable to do so please specify)") %>%#
+                mutate(BW=110-participantConfidence)  %>% #
+                mutate(bw_pe=(BW/PE)) %>%#
+                mutate_if(is_character, as_factor) %>%#
+                mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                mutate(level=as.factor(level)) %>%#
+                mutate(gamers=gamingtime.quant>2) %>%#
+                mutate(PEscaled=abs(scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition)) %>%#
+                mutate(PEsignedScaled=scale(Result, center = c(-0.5), scale = c(0.01)) - participantPosition) %>%#
+                mutate(meanchange=Mean != dplyr::lag(Mean)) %>%#
+                mutate(SDhigh = SD %in% 0.12) %>%#
+                mutate(correctedL6trialScore = case_when(level == 6  & trialScore < 0 ~ 0, #correct level 6 scores#
+                                            level == 6 & trialScore>0  ~ trialScore/2,#
+                                            TRUE ~ as.numeric(trialScore))) %>%##
+                mutate(level_3split = case_when( level == 3 & SDhigh == TRUE ~ "3highnoise",#
+                                                level == 3 & SDhigh == FALSE ~ "3lownoise",#
+                                                level == 4 ~ "4",#
+                                                level == 5 ~ "5",#
+                                                level == 6 ~ "6"))#
+#
+#################################################################################################################################################
+# create wide df for modelling parameters #
+#################################################################################################################################################
+#
+    ###########################
+    # create summary df for key task metrics #
+    ###########################
+#
+        genpop2_averaged <- Genpop %>%#
+                                    filter(level %in% c(3:6)) %>%#
+                                    group_by(Participant.Private.ID, level) %>%#
+                                    summarise(meanscore=mean(trialScore),#
+                                        score=mean(trialScore), #
+                                        meancorrectedL6trialScore=mean(correctedL6trialScore),#
+                                        meanconf=mean(participantConfidence),#
+                                        sumsuccess=sum(success/length(level)),#
+                                        meanPE=mean(PE),#
+                                        meanPEscaled=mean(PEscaled),#
+                                        meanPEsignedScaled=mean(PEsignedScaled),#
+                                        meanPerfE=mean(PerfE))     #
+#
+        #Long df required for modelling #
+        long_df <- cldat %>% #
+                        mutate(Participant.Private.ID=as.factor(Participant.Private.ID)) %>%#
+                        #group_by(level_3split) %>%#
+                        pivot_longer(cols = starts_with("L"), names_to = c("level", "param"), names_pattern = c("(.)_(.+)")) %>%  #
+                        #group_by(level) %>%                                         #
+                        left_join(x=., y=genpop2_averaged, by=c("Participant.Private.ID", "level")) %>%#
+                        mutate_if(is_character, as_factor) #
+#
+#################################################################################################################################################
+# set contrasts for levels #
+#################################################################################################################################################
+#
+        long_df$level<-droplevels(long_df$level)#
+                        cMat <- cbind( c(-1,1,0,0), # 3 vs 4#
+                                    c(0,-1,1,0), # 4 vs 5#
+                                    c(0,0,-1,1)) #5vs 6#
+                        contrasts(long_df$level) <-cMat#
+                        colnames(attr(long_df$level, "contrasts")) <- c("3v4", "4v5", "5v6")#
+#################################################################################################################################################
+# LME model sets: BE1#
+#################################################################################################################################################
+p<-"be1"#
+#
+                        modNull<-#
+                                long_df %>%#
+                                    filter(param==p) %>%#
+                                    select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                    drop_na %>%#
+                                    lme4::lmer(value ~  1 + #
+                                     (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)))#
+                        modNull_covariates<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                    select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~ ethnicity + employment + psychdx + neurologicalImp + gamers + education +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        mod_level<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modSPQ<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*spq_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modSPQ_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + spq_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modPara<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*green_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modPara_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + green_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modDelusions<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, Participant.Private.ID, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*pdi_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modDelusions_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(Participant.Private.ID, value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + pdi_total + ethnicity  +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+                        modallsymst_noint<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(Participant.Private.ID, value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level + pdi_total + ethnicity  + green_total + spq_total +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                        modallsymst<-     #
+                                long_df %>%#
+                                        filter(param==p) %>%#
+                                             select(Participant.Private.ID, value, ethnicity, employment, psychdx, neurologicalImp, gamers, education,#
+                                    level, spq_total, pdi_total, green_total) %>%#
+                                        drop_na %>%#
+                                        lmer(value ~  level*pdi_total + ethnicity  + green_total + spq_total +#
+                                        (1|Participant.Private.ID) + (1|level), data=., REML=F,#
+                                                                control=lme4::lmerControl(optimizer="bobyqa", #
+                                                                optCtrl=list(maxfun=2e7)) )#
+#
+                                        MuMIn::model.sel(modNull,#
+                                                        modNull_covariates,#
+                                                        mod_level,#
+                                                        modSPQ,#
+                                                        modSPQ_noint,#
+                                                        modPara,#
+                                                        modPara_noint,#
+                                                        modDelusions,#
+                                                        modDelusions_noint,#
+                                                        modallsymst_noint,#
+                                                        modallsymst)             #
+                        car::qqPlot(resid(modPara))#
+                        scatter.smooth(residuals(modPara) ~ fitted(modPara))#
+                        summary(modPara)
+library(terra)#
+library(tidyverse)#
+#
+ct<-terra::vect("Outputs/ct")#
+#
+files<-list.files(  "Data/usgrid-us-social-vulnerability-index-rev01-tract-2020-wgs84-geotiff", #
+                    pattern='.tif', all.files= T, full.names= T) #
+filenames <-files %>%#
+    str_sub(., start = 89, end = -1L)#
+#
+svi<-terra::rast(x=files) %>%#
+    project(., terra::crs(ct))#
+#
+names(svi)<-filenames#
+#
+svi_ct<-terra::crop(svi, ct, mask=TRUE)#
+#
+writeRaster(svi_ct, "Outputs/svi.tif", overwrite=TRUE)
+library(terra)#
+library(tidyverse)#
+#
+ct<-terra::vect("Outputs/ct")#
+#
+files<-list.files(  "Data/usgrid-us-social-vulnerability-index-rev01-tract-2020-wgs84-geotiff", #
+                    pattern='.tif', all.files= T, full.names= T)
+files
+library(terra)#
+#
+states<-terra::vect("Data/tl_2012_us_state")#
+#
+terra::plot(states)#
+#
+ct<-states[states$NAME=="Connecticut"]#
+#
+writeVector(ct, "Outputs/ct", overwrite=TRUE)
+library(terra)
+states<-terra::vect("Data/tl_2012_us_state")
+getwd()
+library(terra)#
+#
+setwd("/Users/tg625/Documents/PDA/Directory")
+states<-terra::vect("Data/tl_2012_us_state")
+getwd()
+setwd("/Users/tg625/Documents/PDA/Directory/LearningCollabMap")
+states<-terra::vect("Data/tl_2012_us_state")
+states
+library(terra)#
+#
+setwd("/Users/tg625/Documents/PDA/Directory/LearningCollabMap")#
+#
+states<-terra::vect("Data/tl_2012_us_state")#
+#
+terra::plot(states)#
+#
+ct<-states[states$NAME=="Connecticut"]#
+#
+writeVector(ct, "Outputs/ct", overwrite=TRUE)
+library(terra)#
+library(tidyverse)#
+#
+ct<-terra::vect("Outputs/ct")#
+#
+files<-list.files(  "Data/usgrid-us-social-vulnerability-index-rev01-tract-2020-wgs84-geotiff", #
+                    pattern='.tif', all.files= T, full.names= T) #
+filenames <-files %>%#
+    str_sub(., start = 89, end = -1L)#
+#
+svi<-terra::rast(x=files) %>%#
+    project(., terra::crs(ct))#
+#
+names(svi)<-filenames#
+#
+svi_ct<-terra::crop(svi, ct, mask=TRUE)#
+#
+writeRaster(svi_ct, "Outputs/svi.tif", overwrite=TRUE)
+library(terra)#
+#
+towns<-terra::vect("Data/CT_Vicinity_Town_Polygon")#
+ct<-terra::vect("Outputs/ct")#
+#
+ct_towns<-towns[towns$STATE_NAME=="Connecticut" & !is.na(towns$TOWN_NAME) & towns$LABEL_FLAG=="True"]#
+#
+ct_towns<-project(ct_towns, terra::crs(ct))#
+#
+writeVector(ct_towns, "Outputs/towns", overwrite=TRUE)
+library(tidyverse)#
+library(terra)#
+#
+svi<-terra::rast("Outputs/svi.tif")#
+towns<-terra::vect("Outputs/towns")#
+#
+df<-terra::extract(svi, towns) %>%#
+    group_by(ID) %>%#
+    summarise_all(mean, na.rm=TRUE)#
+#
+df$town<-towns$TOWN_NAME#
+#
+df %>%#
+    select(overall_wgs84.tif, town) %>%#
+    arrange(overall_wgs84.tif) %>%#
+    print(n=999)
+library(tidyverse)#
+library(terra)#
+library(tidyterra)#
+#
+svi<-terra::rast("Outputs/svi.tif")#
+towns<-terra::vect("Outputs/towns")#
+#
+ggplot() +#
+  geom_spatraster(data = select(svi, overall_wgs84.tif))+#
+  geom_spatvector(data=towns, fill=NA)+#
+  scale_fill_continuous(low="thistle2", high="darkred", #
+                       guide="colorbar",na.value="transparent")#
+ggplot() +#
+  geom_spatraster(data = svi) +#
+  facet_wrap(~lyr, ncol = 2) +#
+  scale_fill_whitebox_c(#
+    palette = "muted",#
+    labels = scales::label_number(suffix = "º"),#
+    n.breaks = 12,#
+    guide = guide_legend(reverse = TRUE)#
+  ) +#
+  labs(#
+    fill = "",#
+    title = "Average temperature in Castille and Leon (Spain)",#
+    subtitle = "Months of April, May and June"#
+  )
+ggplot() +#
+  geom_spatraster(data = select(svi, overall_wgs84.tif))+#
+  geom_spatvector(data=towns, fill=NA)+#
+  scale_fill_continuous(low="thistle2", high="darkred", #
+                       guide="colorbar",na.value="transparent")
+ggplot() +#
+  geom_spatraster(data = svi) +#
+  facet_wrap(~lyr, ncol = 2) +#
+  scale_fill_whitebox_c(#
+    palette = "muted",#
+    labels = scales::label_number(suffix = "º"),#
+    n.breaks = 12,#
+    guide = guide_legend(reverse = TRUE)#
+  ) +#
+  labs(#
+    fill = "",#
+    title = "Average temperature in Castille and Leon (Spain)",#
+    subtitle = "Months of April, May and June"#
+  )
+ggplot() +#
+  geom_spatraster(data = select(svi, overall_wgs84.tif))+#
+  geom_spatvector(data=towns, fill=NA)+#
+  scale_fill_continuous(low="thistle2", high="darkred", #
+                       guide="colorbar",na.value="transparent")
+df %>%#
+    select(overall_wgs84.tif, town) %>%#
+    arrange(overall_wgs84.tif) %>%#
+    print(n=999)
+ggplot() +#
+  geom_spatraster(data = svi) +#
+  facet_wrap(~lyr, ncol = 2) +#
+  scale_fill_whitebox_c(#
+    palette = "muted",#
+    labels = scales::label_number(suffix = "º"),#
+    n.breaks = 12,#
+    guide = guide_legend(reverse = TRUE)#
+  ) +#
+  labs(#
+    fill = "",#
+    title = "Average temperature in Castille and Leon (Spain)",#
+    subtitle = "Months of April, May and June"#
+  )
+ggplot() +#
+  geom_spatraster(data = select(svi, overall_wgs84.tif)) +#
+  geom_spatvector(data=towns, fill=NA)+#
+  scale_fill_continuous(low="thistle2", high="darkred", #
+                       guide="colorbar",na.value="transparent")
+svi
+towns
+ct_towns
