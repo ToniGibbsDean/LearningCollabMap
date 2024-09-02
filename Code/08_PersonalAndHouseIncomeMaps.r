@@ -9,7 +9,7 @@ towns<-terra::vect("Outputs/towns")
 zip<-terra::vect("Data/zip")
 
 # load clinical data
-dat_full <- read.csv("/Users/tg625/Downloads/LC-Allvariable_2024-06-10_1544.csv")
+dat_full <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 dat <- dat_full[-c(1,19:22), ]
 datrdce <- dat %>% 
                 select("current_zipcode", "participant_income", "household_income") %>% 
@@ -46,7 +46,7 @@ p1_eligibleZips_Personalincome <- ggplot() +
    # fontface = "bold",
    # color = "red"
  # )
-ggsave(p1_eligibleZips_Personalincome, filename = "/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/map_p1_eligibleZips_MedianPersonalIncome.pdf")
+ggsave(p1_eligibleZips_Personalincome, filename = "Outputs/map_p1_eligibleZips_MedianPersonalIncome.pdf")
 
 p1b_eligibleZips_PincomeWpoints <- ggplot(data=zip_wClinical) +
   geom_sf(aes(fill=Med_participant_income), colour="lightgrey") +
@@ -60,7 +60,7 @@ p1b_eligibleZips_PincomeWpoints <- ggplot(data=zip_wClinical) +
                       na.value="transparent") +
   guides(fill = guide_legend(override.aes = list(alpha = 0.5)), alpha = FALSE) 
 
-ggsave(p1b_eligibleZips_PincomeWpoints, filename = "/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/p1b_eligibleZips_PincomeWpoints.pdf")
+ggsave(p1b_eligibleZips_PincomeWpoints, filename = "Outputs/p1b_eligibleZips_PincomeWpoints.pdf")
 
 
 
@@ -75,7 +75,7 @@ p2_eligibleZips_Householdincome <- ggplot() +
    # fontface = "bold",
    # color = "red"
  # )
-ggsave(p2_eligibleZips_Householdincome, filename = "/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/p2_eligibleZips_Householdincome.pdf")
+ggsave(p2_eligibleZips_Householdincome, filename = "Outputs/p2_eligibleZips_Householdincome.pdf")
 
 p1b_eligibleZips_HincomeWpoints <- ggplot(data=zip_wClinical) +
   geom_sf(aes(fill=Med_household_income), colour="lightgrey") +
@@ -89,5 +89,5 @@ p1b_eligibleZips_HincomeWpoints <- ggplot(data=zip_wClinical) +
                       na.value="transparent") +
   guides(fill = guide_legend(override.aes = list(alpha = 0.5)), alpha = FALSE) 
 
-ggsave(p1b_eligibleZips_HincomeWpoints, filename = "/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/p1b_eligibleZips_HincomeWpoints.pdf")
+ggsave(p1b_eligibleZips_HincomeWpoints, filename = "Outputs/p1b_eligibleZips_HincomeWpoints.pdf")
 

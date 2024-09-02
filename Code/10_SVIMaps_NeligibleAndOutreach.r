@@ -9,7 +9,7 @@ towns<-terra::vect("Outputs/towns")
 zip<-terra::vect("Data/zip")
 
 # load clinical data
-dat_full <- read.csv("/Users/tg625/Downloads/LC-Allvariable_2024-06-10_1544.csv")
+dat_full <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 dat <- dat_full[-c(1,19:22), ]
 datrdce <- dat %>% 
                 select("current_zipcode") %>% 
@@ -51,7 +51,7 @@ p1_eligibleZips <- ggplot() +
    # fontface = "bold",
    # color = "red"
  # )
-ggsave(p1_eligibleZips, filename = "/Users/tg625/Desktop/map_p1_eligibleZips.pdf")
+ggsave(p1_eligibleZips, filename = "Outputs/map_p1_eligibleZips.pdf")
 
 
  newzip_wClinical<-zip_wClinical %>% arrange(., desc(n))
@@ -66,7 +66,7 @@ p1b_eligibleZips <- ggplot(data=newzip_wClinical) +
   theme_minimal() + 
   guides(fill = guide_legend(override.aes = list(alpha = 0.5)), alpha = FALSE) 
 
-ggsave(p1b_eligibleZips, filename = "/Users/tg625/Desktop/map_p1b_eligibleZips_wPoints.pdf")
+ggsave(p1b_eligibleZips, filename = "Outputs/map_p1b_eligibleZips_wPoints.pdf")
 
 
 p2_eligibleZips_SVI_point <- ggplot(newzip_wClinical) + 
@@ -81,7 +81,7 @@ p2_eligibleZips_SVI_point <- ggplot(newzip_wClinical) +
   guides(fill = guide_legend(override.aes = list(alpha = 0.9)), alpha = FALSE) +
   theme_minimal()
 
-ggsave(p2_eligibleZips_SVI_point, filename = "/Users/tg625/Desktop/p2_eligibleZips_SVI_point.pdf")
+ggsave(p2_eligibleZips_SVI_point, filename = "Outputs/p2_eligibleZips_SVI_point.pdf")
 
 
 ####outreach response
@@ -105,7 +105,7 @@ outreachResponse <- ggplot() +
   
 
 
-ggsave(outreachResponse, filename = "/Users/tg625/Desktop/outreachResponse.pdf")
+ggsave(outreachResponse, filename = "Outputs/outreachResponse.pdf")
 
 
 
@@ -119,7 +119,7 @@ outreachResponse<- ggplot(newzip_wClinical) +
                       na.value="transparent") +
   theme_minimal() +
   scale_colour_manual(values = c("grey","black")) 
-ggsave(outreachResponse, filename = "/Users/tg625/Desktop/outreachResponse.pdf")
+ggsave(outreachResponse, filename = "Outputs/outreachResponse.pdf")
 
 
 v <- vect(towns)

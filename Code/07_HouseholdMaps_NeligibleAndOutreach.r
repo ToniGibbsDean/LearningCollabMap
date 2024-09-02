@@ -9,7 +9,7 @@ towns<-terra::vect("Outputs/towns")
 zip<-terra::vect("Data/zip")
 
 # load clinical data
-dat_full <- read.csv("/Users/tg625/Downloads/LC-Allvariable_2024-06-10_1544.csv")
+dat_full <- read.csv("Data/RedCapData-LC-Allvariable.csv")
 dat <- dat_full[-c(1,19:22), ]
 datrdce <- dat %>% 
           select("current_zipcode") %>% 
@@ -50,7 +50,7 @@ p2_eligibleZips_HOUSEHOLD_point <- ggplot(zip_wClinical) +
   guides(fill = guide_legend(override.aes = list(alpha = 0.9)), alpha = FALSE) +
   theme_minimal()
 
-ggsave(p2_eligibleZips_HOUSEHOLD_point, filename = "/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/p2_eligibleZips_HOUSEHOLD_point.pdf")
+ggsave(p2_eligibleZips_HOUSEHOLD_point, filename = "Outputs/p2_eligibleZips_HOUSEHOLD_point.pdf")
 
 
 ####outreach response
@@ -66,7 +66,7 @@ outreachResponse_HOUSEHOLD<- ggplot(zip_wClinical) +
   theme_minimal() +
   scale_colour_manual(values = c("grey","black")) 
 
-ggsave(outreachResponse_HOUSEHOLD, filename = "/Users/tg625/Documents/PDA/Directory/LearningCollabMap/Outputs/outreachResponse_HOUSEHOLD.pdf")
+ggsave(outreachResponse_HOUSEHOLD, filename = "Outputs/outreachResponse_HOUSEHOLD.pdf")
 
 
 
