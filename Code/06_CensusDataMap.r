@@ -24,6 +24,6 @@ ggplot() +
   ) +
   labs(
     fill = "",
-    title = "Average temperature in Castille and Leon (Spain)",
+    title = "CT zips by SESwages, household, minority",
     subtitle = "Months of April, May and June"
   )
